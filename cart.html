@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Your Cart - Flip Phone Resale</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <div class="brand">Flip Phone Resale</div>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop Now</a>
+      <a href="sell.html">Sell Your Device</a>
+      <a href="about.html">About Us</a>
+      <a href="cart.html" class="active">Cart <span id="cartCount" class="small">0</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2>Your cart</h2>
+  <div id="cartItems" class="card"></div>
+
+  <div class="row">
+    <a class="btn alt" href="shop.html">Continue shopping</a>
+    <a class="btn" href="checkout.html">Checkout</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">© Flip Phone Resale · Tempe, AZ</div>
+</footer>
+
+<script src="common.js"></script>
+<script>
+  renderCart();
+</script>
+</body>
+</html>
+

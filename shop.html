@@ -1,32 +1,173 @@
-<!-- product grid start -->
-<section style="margin-top:14px" class="grid">
-  <article class="category">
-    <img src="images/ip11-64-black.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=iPhone+11';" alt="iPhone 11 front" style="width:100%;border-radius:8px;object-fit:cover;height:160px">
-    <h3>iPhone 11 - 64GB - Black</h3>
-    <p class="brands"><strong>SKU:</strong> IP11-64-BLK · <strong>Inventory:</strong> FPR-INV-20251023-001</p>
-    <p class="small">Condition: Good · Battery 84% · Minor bezel wear · IMEI clean · Includes charging cable.</p>
-    <div style="margin-top:10px;display:flex;gap:8px">
-      <button class="btn" onclick="addToCart({sku:'IP11-64-BLK',id:'FPR-INV-20251023-001',title:'iPhone 11 64GB Black',price:199})">Add to Cart</button>
-      <a href="checkout.html" class="btn alt">Buy Now</a>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Shop - Flip Phone Resale</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <div class="brand">Flip Phone Resale</div>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop Now</a>
+      <a href="sell.html">Sell Your Device</a>
+      <a href="about.html">About Us</a>
+      <a href="cart.html">Cart <span id="cartCount" class="small">0</span></a>
     </div>
-  </article>
+  </div>
+</header>
 
-  <!-- Repeat for each item (example shortened) -->
+<main class="wrap">
+  <h2>Shop Now</h2>
+  <p class="small">Browse our current inventory. Each listing shows SKU, inventory code, and inspection notes.</p>
 
-  <article class="category">
-    <img src="images/iphone13-128-blue.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=iPhone+13';" alt="iPhone 13 front" style="width:100%;border-radius:8px;object-fit:cover;height:160px">
-    <h3>iPhone 13 - 128GB - Blue</h3>
-    <p class="brands"><strong>SKU:</strong> IP13-128-BLU · <strong>Inventory:</strong> FPR-INV-20251023-004</p>
-    <p class="small">Condition: Like New · Battery 92% · No visible damage · IMEI clean.</p>
-    <div style="margin-top:10px;display:flex;gap:8px">
-      <button class="btn" onclick="addToCart({sku:'IP13-128-BLU',id:'FPR-INV-20251023-004',title:'iPhone 13 128GB Blue',price:349})">Add to Cart</button>
-      <a href="checkout.html" class="btn alt">Buy Now</a>
-    </div>
-  </article>
+  <section class="grid">
+    <!-- 12 product cards -->
+    <article class="category">
+      <img src="images/ip11-64-black.jpg" alt="iPhone 11 front" class="product-img">
+      <h3>iPhone 11 - 64GB - Black</h3>
+      <p class="brands"><strong>SKU:</strong> IP11-64-BLK · <strong>Inventory:</strong> FPR-INV-20251023-001</p>
+      <p class="small">Condition: Good · Battery 84% · Minor bezel wear · IMEI clean · Includes charging cable.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'IP11-64-BLK',id:'FPR-INV-20251023-001',title:'iPhone 11 64GB Black',price:199})">Add to Cart — $199</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
 
-  <!-- add the rest with the same pattern; use filenames from the list -->
-</section>
-<!-- product grid end -->
+    <article class="category">
+      <img src="images/dell-latitude-5480.jpg" alt="Dell Latitude 5480 front" class="product-img">
+      <h3>Dell Latitude 5480 - 8GB / 256GB</h3>
+      <p class="brands"><strong>SKU:</strong> DL-5480-8-256 · <strong>Inventory:</strong> FPR-INV-20251023-002</p>
+      <p class="small">Condition: Refurbished · Battery cycles 220 · Screen excellent · Includes charger.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'DL-5480-8-256',id:'FPR-INV-20251023-002',title:'Dell Latitude 5480',price:249})">Add to Cart — $249</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+
+    <article class="category">
+      <img src="images/galaxy-tab-a7-32.jpg" alt="Galaxy Tab A7 front" class="product-img">
+      <h3>Samsung Galaxy Tab A7 - 32GB</h3>
+      <p class="brands"><strong>SKU:</strong> TAB-A7-32 · <strong>Inventory:</strong> FPR-INV-20251023-003</p>
+      <p class="small">Condition: Like New · Wi‑Fi tested · No water damage.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'TAB-A7-32',id:'FPR-INV-20251023-003',title:'Galaxy Tab A7 32GB',price:129})">Add to Cart — $129</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+
+    <article class="category">
+      <img src="images/iphone13-128-blue.jpg" alt="iPhone 13 front" class="product-img">
+      <h3>iPhone 13 - 128GB - Blue</h3>
+      <p class="brands"><strong>SKU:</strong> IP13-128-BLU · <strong>Inventory:</strong> FPR-INV-20251023-004</p>
+      <p class="small">Condition: Like New · Battery 92% · IMEI clean.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'IP13-128-BLU',id:'FPR-INV-20251023-004',title:'iPhone 13 128GB Blue',price:349})">Add to Cart — $349</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+
+    <article class="category">
+      <img src="images/galaxy-s21-128-phantom.jpg" alt="Galaxy S21 front" class="product-img">
+      <h3>Samsung Galaxy S21 - 128GB - Phantom Gray</h3>
+      <p class="brands"><strong>SKU:</strong> SG-S21-128-PG · <strong>Inventory:</strong> FPR-INV-20251023-005</p>
+      <p class="small">Condition: Good · Battery 86% · Minor rear scuff · Unlocked.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'SG-S21-128-PG',id:'FPR-INV-20251023-005',title:'Galaxy S21 128GB Phantom Gray',price:279})">Add to Cart — $279</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+
+    <article class="category">
+      <img src="images/pixel6-128-stormy.jpg" alt="Pixel 6 front" class="product-img">
+      <h3>Google Pixel 6 - 128GB - Stormy Black</h3>
+      <p class="brands"><strong>SKU:</strong> PX6-128-SB · <strong>Inventory:</strong> FPR-INV-20251023-006</p>
+      <p class="small">Condition: Good · Battery 88% · Factory reset · Unlocked.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'PX6-128-SB',id:'FPR-INV-20251023-006',title:'Pixel 6 128GB Stormy Black',price:239})">Add to Cart — $239</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+
+    <article class="category">
+      <img src="images/macbook-air-m1-256-spacegray.jpg" alt="MacBook Air M1 front" class="product-img">
+      <h3>MacBook Air M1 - 8GB / 256GB - Space Gray</h3>
+      <p class="brands"><strong>SKU:</strong> MBA-M1-8-256-SG · <strong>Inventory:</strong> FPR-INV-20251023-007</p>
+      <p class="small">Condition: Refurbished · Battery healthy · macOS updated · Includes charger.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'MBA-M1-8-256-SG',id:'FPR-INV-20251023-007',title:'MacBook Air M1 8GB 256GB Space Gray',price:599})">Add to Cart — $599</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+
+    <article class="category">
+      <img src="images/dell-xps13-16-512-silver.jpg" alt="Dell XPS 13 front" class="product-img">
+      <h3>Dell XPS 13 - 16GB / 512GB - Silver</h3>
+      <p class="brands"><strong>SKU:</strong> XPS13-16-512-SL · <strong>Inventory:</strong> FPR-INV-20251023-008</p>
+      <p class="small">Condition: Refurbished · Excellent display · Includes power adapter.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'XPS13-16-512-SL',id:'FPR-INV-20251023-008',title:'Dell XPS 13 16GB 512GB Silver',price:549})">Add to Cart — $549</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+
+    <article class="category">
+      <img src="images/hp-spectre-x360-16-512-nightfall.jpg" alt="HP Spectre x360 front" class="product-img">
+      <h3>HP Spectre x360 - 16GB / 512GB - Nightfall Black</h3>
+      <p class="brands"><strong>SKU:</strong> HPS-X360-16-512-NB · <strong>Inventory:</strong> FPR-INV-20251023-009</p>
+      <p class="small">Condition: Refurbished · Touchscreen tested · Charger included.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'HPS-X360-16-512-NB',id:'FPR-INV-20251023-009',title:'HP Spectre x360 16GB 512GB Nightfall Black',price:579})">Add to Cart — $579</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+
+    <article class="category">
+      <img src="images/ipad9-64-silver.jpg" alt="iPad 9 front" class="product-img">
+      <h3>Apple iPad 9 - 64GB - Silver</h3>
+      <p class="brands"><strong>SKU:</strong> IPAD9-64-SV · <strong>Inventory:</strong> FPR-INV-20251023-010</p>
+      <p class="small">Condition: Like New · Wi‑Fi · No cracks · Factory reset.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'IPAD9-64-SV',id:'FPR-INV-20251023-010',title:'iPad 9 64GB Silver',price:179})">Add to Cart — $179</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+
+    <article class="category">
+      <img src="images/kindle-paperwhite-8.jpg" alt="Kindle Paperwhite front" class="product-img">
+      <h3>Amazon Kindle Paperwhite - 8GB - Black</h3>
+      <p class="brands"><strong>SKU:</strong> KPW-8-BLK · <strong>Inventory:</strong> FPR-INV-20251023-011</p>
+      <p class="small">Condition: Refurbished · Screen perfect · Battery tested.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'KPW-8-BLK',id:'FPR-INV-20251023-011',title:'Kindle Paperwhite 8GB Black',price:79})">Add to Cart — $79</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+
+    <article class="category">
+      <img src="images/apple-watch-series7-45-midnight.jpg" alt="Apple Watch Series 7 front" class="product-img">
+      <h3>Apple Watch Series 7 - 45mm - Midnight</h3>
+      <p class="brands"><strong>SKU:</strong> AW7-45-MD · <strong>Inventory:</strong> FPR-INV-20251023-012</p>
+      <p class="small">Condition: Good · Bands included · Sensor checks completed.</p>
+      <div class="row">
+        <button class="btn" onclick="addToCart({sku:'AW7-45-MD',id:'FPR-INV-20251023-012',title:'Apple Watch Series 7 45mm Midnight',price:199})">Add to Cart — $199</button>
+        <a href="checkout.html" class="btn alt">Buy Now</a>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">© Flip Phone Resale · 3526 E Eleana Ln · Tempe, AZ · 480-382-6597</div>
+</footer>
+
+<script src="common.js"></script>
+</body>
+</html>
+
 
 
 

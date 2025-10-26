@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Checkout - Flip Phone Resale</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <div class="brand">Flip Phone Resale</div>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop Now</a>
+      <a href="sell.html">Sell Your Device</a>
+      <a href="about.html">About Us</a>
+      <a href="cart.html">Cart <span id="cartCount" class="small">0</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2>Checkout</h2>
+  <div id="checkoutItems" class="card"></div>
+
+  <form class="form" onsubmit="event.preventDefault(); placeOrder();">
+    <h3>Customer information</h3>
+    <label class="label">Full name
+      <input id="custName" class="input" required placeholder="John Doe">
+    </label>
+    <label class="label">Email
+      <input id="custEmail" type="email" class="input" required placeholder="john@example.com">
+    </label>
+    <label class="label">Shipping address
+      <textarea id="custAddr" class="input" rows="3" required placeholder="Street, City, State, ZIP"></textarea>
+    </label>
+
+    <h3>Payment</h3>
+    <label class="label">Payment method
+      <select id="payMethod" class="input">
+        <option>Credit/Debit Card</option>
+        <option>PayPal</option>
+        <option>Cash on Pickup</option>
+      </select>
+    </label>
+
+    <div class="row">
+      <button class="btn" type="submit">Place order</button>
+      <a href="cart.html" class="btn alt">Back to cart</a>
+    </div>
+  </form>
+
+  <div id="orderResult" class="card small"></div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">© Flip Phone Resale · Tempe, AZ</div>
+</footer>
+
+<script src="common.js"></script>
+<script>
+  renderCheckout();
+</script>
+</body>
+</html>
+
