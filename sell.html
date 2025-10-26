@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Sell Your Device - Flip Phone Resale</title><link rel="stylesheet" href="styles.css"/></head><body>
+<header class="header"><div class="wrap nav"><div class="brand">Flip Phone Resale</div>
+<div class="navlinks"><a href="index.html">Home</a><a href="shop.html">Shop Now</a><a href="sell.html">Sell Your Device</a><a href="about.html">About Us</a><a href="cart.html">Cart <span id="cartCount" class="small">0</span></a></div></div></header>
+
+<main class="wrap">
+  <h2>Sell Your Device</h2>
+  <p class="small">Get a clear, fast quote and sell your device securely. We buy at 40% of the market asking price for comparable refurbished/new models, subject to final inspection.</p>
+
+  <div class="grid" style="margin-top:12px">
+    <div class="card">
+      <h3>Steps to Sell / Trade-in</h3>
+      <ol class="steps" style="margin-top:12px">
+        <li>Complete the qualification questions and device info below.</li>
+        <li>Receive a preliminary quote instantly based on your market price entry.</li>
+        <li>If you accept, schedule drop-off or request shipping instructions.</li>
+        <li>We inspect the device on receipt; final offer may adjust. If accepted, complete Bill of Sale and receive payment.</li>
+      </ol>
+      <p class="small">Note: Devices reported stolen, iCloud/Google-locked, or carrier-blacklisted are ineligible.</p>
+    </div>
+
+    <div class="card">
+      <h3>Qualification Checklist</h3>
+      <div class="faq small">
+        <p><strong>Unlocked / Not blacklisted:</strong> Required for purchase.</p>
+        <p><strong>Ownership:</strong> We may request ID to confirm ownership before final sale.</p>
+        <p><strong>Condition:</strong> Severe water damage or missing core parts can void offers.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:18px" class="card">
+    <h3>Device Questionnaire</h3>
+    <form id="sellForm" onsubmit="return false;">
+      <div class="form-row">
+        <div style="flex:1"><label>Full Name</label><input id="ownerName" type="text" required></div>
+        <div style="width:240px"><label>Phone</label><input id="ownerPhone" type="text"></div>
+      </div>
+
+      <div class="form-row" style="margin-top:8px">
+        <div style="flex:1"><label>Email</label><input id="ownerEmail" type="email"></div>
+        <div style="width:200px"><label>Category</label><select id="category"><option value="phone">Cell Phone</option><option value="laptop">Laptop</option><option value="tablet">Tablet</option><option value="ereader">E-Reader</option><option value="watch">Smart Watch</option></select></div>
+      </div>
+
+      <div class="form-row" style="margin-top:8px">
+        <div style="flex:1"><label>Make</label><input id="make" type="text" placeholder="Apple, Samsung, Dell..."></div>
+        <div style="width:180px"><label>Model</label><input id="model" type="text" placeholder="Model"></div>
+        <div style="width:120px"><label>Storage</label><input id="storage" type="text" placeholder="128GB"></div>
+      </div>
+
+      <div class="form-row" style="margin-top:8px">
+        <div style="width:220px"><label>Condition</label><select id="condition"><option value="like-new">Like New</option><option value="good">Good</option><option value="fair">Fair</option><option value="poor">Poor</option></select></div>
+        <div style="width:220px"><label>Screen Damage</label><select id="screen"><option value="no">No</option><option value="minor">Minor</option><option value="major">Major</option></select></div>
+        <div style="width:180px"><label>Power On</label><select id="power"><option value="yes">Yes</option><option value="no">No</option></select></div>
+      </div>
+
+      <div class="form-row" style="margin-top:8px">
+        <div style="width:260px"><label>iCloud/Google Locked?</label><select id="locked"><option value="no">No</option><option value="yes">Yes</option></select></div>
+        <div style="flex:1"><label>Estimated Market Asking Price ($)</label><input id="marketPrice" type="number" required></div>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-top:12px;align-items:center">
+        <button class="btn" onclick="sellCompute()">Get My Quote Now</button>
+        <div id="quoteArea" class="quote-box" style="flex:1">
+          <div class="small">Preliminary offer</div>
+          <div id="quoteVal" class="quote-amount">$0.00</div>
+          <div class="small" style="margin-top:6px">Offer = 40% of market price, subject to inspection.</div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div style="margin-top:14px" class="small muted">If you accept the offer we’ll provide instructions to drop off or ship your device. Final payment after inspection and Bill of Sale.</div>
+</main>
+
+<footer class="footer"><div class="wrap">© Flip Phone Resale · 480-382-6597 · 3526 E Eleana Ln, Gilbert, AZ</div></footer>
+<script src="common.js"></script>
+<script>
+function sellCompute(){
+  const market=parseFloat(document.getElementById('marketPrice').value||0);
+  const locked=document.getElementById('locked').value==='yes';
+  const power=document.getElementById('power').value==='yes';
+  const screen=document.getElementById('screen').value;
+  if(!market || market<=0){alert('Enter a valid market price');return;}
+  const offer=computeOffer(market,{locked:locked,power:power,screen:screen});
+  document.getElementById('quoteVal').innerText = offer?('$'+offer.toFixed(2)):'Ineligible';
+  // save to local history
+  try{
+    const h=JSON.parse(localStorage.getItem('fpr_sell_history')||'[]');
+    h.unshift({ts:new Date().toISOString(),name:document.getElementById('ownerName').value||'',make:document.getElementById('make').value||'',model:document.getElementById('model').value||'',market:market,offer:offer});
+    localStorage.setItem('fpr_sell_history',JSON.stringify(h.slice(0,25)));
+  }catch(e){}
+}
+</script>
+</body></html>
