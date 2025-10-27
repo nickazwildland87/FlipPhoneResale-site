@@ -1,39 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sell Your Device - Flip Phone Resale</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common.js" defer></script>
 </head>
 <body>
-<header class="header">
-  <div class="wrap nav">
-    <div class="brand">Flip Phone Resale</div>
-    <div class="navlinks">
+  <header>
+    <h1>Flip Phone Resale</h1>
+    <nav>
       <a href="index.html">Home</a>
       <a href="shop.html">Shop Now</a>
-      <a href="sell.html" class="active">Sell Your Device</a>
-      <a href="about.html">About Us</a>
-      <a href="cart.html">Cart <span id="cartCount" class="small">0</span></a>
-    </div>
-  </div>
-</header>
+      <a href="sell.html" class="active">Sell</a>
+      <a href="about.html">About</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
 
-<main class="wrap">
-  <h2>Sell your device</h2>
-  <p class="small">Get an instant estimate based on current market value. Final offer may vary after inspection.</p>
+  <main>
+    <h2>Sell Your Device</h2>
+    <p>Fill out the form below to get a quote for your device. We’ll review your submission and get back to you with an offer.</p>
 
-  <form class="form" onsubmit="event.preventDefault();">
-    <label class="label">Device type
-      <select id="sellType" class="input">
+    <form id="sell-form">
+      <label for="device">Device Type:</label>
+      <select id="device" required>
+        <option value="">-- Select a device --</option>
         <option value="phone">Phone</option>
-        <option value="tablet">Tablet</option>
         <option value="laptop">Laptop</option>
-        <option value="watch">Watch</option>
+        <option value="tablet">Tablet</option>
+        <option value="watch">Smartwatch</option>
         <option value="other">Other</option>
       </select>
-    </label>
+
+      <label for="brand">Brand:</label>
+      <input type="text" id="brand" placeholder="e.g., Apple, Samsung, Lenovo" required>
+
+      <label for="model">Model:</label>
+      <input type="text" id="model" placeholder="e.g., iPhone 13, ThinkPad X1 Carbon" required>
+
+      <label for="condition">Condition:</label>
+      <select id="condition" required>
+        <option value="">-- Select condition --</option>
+        <option value="excellent">Excellent</option>
+        <option value="good">Good</option>
+        <option value="fair">Fair</option>
+        <option value="poor">Poor</option>
+      </select>
+
+      <label for="storage">Storage (if applicable):</label>
+      <input type="text" id="storage" placeholder="e.g., 128GB, 512GB">
+
+      <label for="notes">Additional Notes:</label>
+      <textarea id="notes" placeholder="Any issues, accessories, etc."></textarea>
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" required>
+
+      <button type="submit" class="btn">Submit for Quote</button>
+    </form>
+
+    <div id="sell-confirmation" style="display:none;">
+      <h3>Thank you!</h3>
+      <p>Your device information has been submitted. We’ll contact you soon with a quote.</p>
+      <a href="index.html" class="btn">Back to Home</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Flip Phone Resale. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Handle Sell form submission
+    document.getElementById("sell-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      // In a real app, this would send data to your backend
+      document.getElementById("sell-form").style.display = "none";
+      document.getElementById("sell-confirmation").style.display = "block";
+    });
+  </script>
+</body>
+</html>
+
 
     <label class="label">Market price (USD)
       <input id="marketPrice" type="number" min="0" step="1" class="input" placeholder="e.g., 300">
