@@ -1,43 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Cart - Flip Phone Resale</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common.js" defer></script>
 </head>
 <body>
-<header class="header">
-  <div class="wrap nav">
-    <div class="brand">Flip Phone Resale</div>
-    <div class="navlinks">
+  <header>
+    <h1>Flip Phone Resale</h1>
+    <nav>
       <a href="index.html">Home</a>
       <a href="shop.html">Shop Now</a>
-      <a href="sell.html">Sell Your Device</a>
-      <a href="about.html">About Us</a>
-      <a href="cart.html" class="active">Cart <span id="cartCount" class="small">0</span></a>
+      <a href="sell.html">Sell</a>
+      <a href="about.html">About</a>
+      <a href="cart.html" class="active">Cart</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Your Shopping Cart</h2>
+    <div id="cart-items"></div>
+    <h3 id="cart-total">Total: $0.00</h3>
+
+    <div class="cart-actions">
+      <a href="checkout.html" class="btn">Proceed to Checkout</a>
+      <button onclick="clearCart(); displayCart();" class="btn">Clear Cart</button>
     </div>
-  </div>
-</header>
+  </main>
 
-<main class="wrap">
-  <h2>Your cart</h2>
-  <div id="cartItems" class="card"></div>
+  <footer>
+    <p>&copy; 2025 Flip Phone Resale. All rights reserved.</p>
+  </footer>
 
-  <div class="row">
-    <a class="btn alt" href="shop.html">Continue shopping</a>
-    <a class="btn" href="checkout.html">Checkout</a>
-  </div>
-</main>
-
-<footer class="footer">
-  <div class="wrap">© Flip Phone Resale · Tempe, AZ</div>
-</footer>
-
-<script src="common.js"></script>
-<script>
-  renderCart();
-</script>
+  <script>
+    // Load cart items when the page opens
+    displayCart();
+  </script>
 </body>
 </html>
+
 
