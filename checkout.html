@@ -1,67 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout - Flip Phone Resale</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common.js" defer></script>
 </head>
 <body>
-<header class="header">
-  <div class="wrap nav">
-    <div class="brand">Flip Phone Resale</div>
-    <div class="navlinks">
+  <header>
+    <h1>Flip Phone Resale</h1>
+    <nav>
       <a href="index.html">Home</a>
       <a href="shop.html">Shop Now</a>
-      <a href="sell.html">Sell Your Device</a>
-      <a href="about.html">About Us</a>
-      <a href="cart.html">Cart <span id="cartCount" class="small">0</span></a>
+      <a href="sell.html">Sell</a>
+      <a href="about.html">About</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Checkout</h2>
+    <div id="checkout-summary"></div>
+
+    <form id="checkout-form">
+      <h3>Customer Information</h3>
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="address">Shipping Address:</label>
+      <textarea id="address" required></textarea>
+
+      <button type="submit" class="btn">Complete Purchase</button>
+    </form>
+
+    <div id="confirmation" style="display:none;">
+      <h3>Thank you for your order!</h3>
+      <p>Your purchase has been confirmed. We’ll send you an email with the details shortly.</p>
+      <a href="shop.html" class="btn">Back to Shop</a>
     </div>
-  </div>
-</header>
+  </main>
 
-<main class="wrap">
-  <h2>Checkout</h2>
-  <div id="checkoutItems" class="card"></div>
+  <footer>
+    <p>&copy; 2025 Flip Phone Resale. All rights reserved.</p>
+  </footer>
 
-  <form class="form" onsubmit="event.preventDefault(); placeOrder();">
-    <h3>Customer information</h3>
-    <label class="label">Full name
-      <input id="custName" class="input" required placeholder="John Doe">
-    </label>
-    <label class="label">Email
-      <input id="custEmail" type="email" class="input" required placeholder="john@example.com">
-    </label>
-    <label class="label">Shipping address
-      <textarea id="custAddr" class="input" rows="3" required placeholder="Street, City, State, ZIP"></textarea>
-    </label>
+  <script>
+    // Display cart summary at checkout
+    function displayCheckoutSummary() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let summary = document.getElementById("checkout-summary");
+      let total = 0;
+      summary.innerHTML = "<h3>Order Summary</h3>";
 
-    <h3>Payment</h3>
-    <label class="label">Payment method
-      <select id="payMethod" class="input">
-        <option>Credit/Debit Card</option>
-        <option>PayPal</option>
-        <option>Cash on Pickup</option>
-      </select>
-    </label>
+      if (cart.length === 0) {
+        summary.innerHTML += "<p>Your cart is empty.</p>";
+        document.getElementById("checkout-form").style.display = "none";
+        return;
+      }
 
-    <div class="row">
-      <button class="btn" type="submit">Place order</button>
-      <a href="cart.html" class="btn alt">Back to cart</a>
-    </div>
-  </form>
+      cart.forEach(item => {
+        total += item.price;
+        summary.innerHTML += `<p>${item.name} - $${item.price.toFixed(2)}</p>`;
+      });
 
-  <div id="orderResult" class="card small"></div>
-</main>
+      summary.innerHTML += `<h4>Total: $${total.toFixed(2)}</h4>`;
+    }
 
-<footer class="footer">
-  <div class="wrap">© Flip Phone Resale · Tempe, AZ</div>
-</footer>
+    // Handle checkout form submission
+    document.getElementById("checkout-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      clearCart(); // from common.js
+      document.getElementById("checkout-form").style.display = "none";
+      document.getElementById("checkout-summary").style.display = "none";
+      document.getElementById("confirmation").style.display = "block";
+    });
 
-<script src="common.js"></script>
-<script>
-  renderCheckout();
-</script>
+    // Run on page load
+    displayCheckoutSummary();
+  </script>
 </body>
 </html>
+
 
