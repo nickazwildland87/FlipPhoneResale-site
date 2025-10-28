@@ -8,19 +8,72 @@ This site includes a storefront, cart, checkout flow, and a form for customers t
 ---
 
 ## 🚀 Features
-- **Homepage** with hero banner, highlights, and featured products
-- **Shop page** with product grid and “Add to Cart” functionality
-- **Cart page** with item list, remove/clear buttons, and total calculation
-- **Checkout page** with order summary and confirmation message
-- **Sell page** with form for customers to submit devices for quotes
-- **About page** with business story, contact info, and hours
-- **Reusable header/footer** with logo and navigation
-- **Responsive design** with modern CSS grid and flexbox
-- **LocalStorage cart** (no backend required)
+- Homepage with hero banner, highlights, and featured products
+- Shop page with product grid and “Add to Cart” functionality
+- Cart page with item list, remove/clear buttons, and total calculation
+- Checkout page with order summary and confirmation message
+- Sell page with form for customers to submit devices for quotes
+- About page with business story, contact info, and hours
+- Reusable header/footer with logo and navigation
+- Responsive design with modern CSS grid and flexbox
+- LocalStorage cart (no backend required)
 
 ---
 
 ## 📂 Project Structure
+```
+flip-phone-resale/
+├─ index.html
+├─ shop.html
+├─ sell.html
+├─ about.html
+├─ cart.html
+├─ checkout.html
+├─ styles.css
+├─ common.js
+├─ favicon.ico
+├─ LICENSE
+├─ README.md
+├─ .gitignore
+└─ images/
+```
 
+---
 
+## 🛠 Setup Instructions
 
+1. Download or clone this repository.
+   ```bash
+   git clone https://github.com/yourusername/flip-phone-resale.git
+   ```
+
+2. Open locally  
+   - Double‑click `index.html` to open in your browser.  
+   - Or use a local server (e.g., VS Code Live Server extension).
+
+3. Deploy online  
+   - Push to GitHub and enable GitHub Pages in repo settings.  
+   - Or host on Netlify, Vercel, or any static web host.
+
+---
+
+## 🔑 Notes
+- Ensure `favicon.ico` is in the root folder.
+- Place your `logo.png` and product images inside the `images/` folder.
+- Filenames must match exactly (case‑sensitive).
+- Cart data is stored in LocalStorage — it will persist until cleared.
+
+---
+
+## 📞 Business Info
+- Business: Flip Phone Resale  
+- Location: Gilbert, Arizona  
+- Hours: Mon–Fri 8:30 AM–9:00 PM, Sat 9:00 AM–7:00 PM, Closed Sundays  
+- Phone: (480) 382‑6597  
+- Email: support@flipphoneresaleaz.com  
+
+---
+
+## 📜 License
+This project is licensed under the [MIT License](LICENSE).  
+You are free to use, modify, and distribute this code for personal or commercial use.

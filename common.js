@@ -43,6 +43,15 @@ function displayCheckoutSummary() {
   const summary = document.getElementById("checkout-summary");
 
   if (cart.length === 0) {
+    summary.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
 
-
-
+  let total = 0;
+  summary.innerHTML = "<ul>";
+  cart.forEach(item => {
+    summary.innerHTML += `<li>${item.name} - $${item.price.toFixed(2)}</li>`;
+    total += item.price;
+  });
+  summary.innerHTML += `</ul><h3>Total: $${total.toFixed(2)}</h3>`;
+}
