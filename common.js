@@ -1,36 +1,32 @@
-// common.js
-
-// Add product to cart
-function addToCart(name, price, image) {
+function addToCart(name, price) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push({ name, price, image });
+  cart.push({ name, price });
   localStorage.setItem("cart", JSON.stringify(cart));
-  alert(`${name} added to cart!`);
+  alert(`${name} added to cart.`);
 }
 
-// Display cart items (for cart.html)
 function displayCart() {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  let cartContainer = document.getElementById("cart-items");
-  let totalContainer = document.getElementById("cart-total");
-  cartContainer.innerHTML = "";
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartItems = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+
+  cartItems.innerHTML = "";
   let total = 0;
 
   cart.forEach((item, index) => {
-    total += item.price;
-    cartContainer.innerHTML += `
-      <div class="cart-item">
-        <img src="${item.image}" alt="${item.name}" width="80">
-        <p>${item.name} - $${item.price.toFixed(2)}</p>
-        <button onclick="removeFromCart(${index})">Remove</button>
-      </div>
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    div.innerHTML = `
+      <span>${item.name} - $${item.price.toFixed(2)}</span>
+      <button onclick="removeFromCart(${index})">Remove</button>
     `;
+    cartItems.appendChild(div);
+    total += item.price;
   });
 
-  totalContainer.innerText = `Total: $${total.toFixed(2)}`;
+  cartTotal.textContent = `Total: $${total.toFixed(2)}`;
 }
 
-// Remove item from cart
 function removeFromCart(index) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.splice(index, 1);
@@ -38,9 +34,15 @@ function removeFromCart(index) {
   displayCart();
 }
 
-// Clear cart (for checkout)
 function clearCart() {
   localStorage.removeItem("cart");
 }
+
+function displayCheckoutSummary() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const summary = document.getElementById("checkout-summary");
+
+  if (cart.length === 0) {
+
 
 

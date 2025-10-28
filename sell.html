@@ -25,7 +25,27 @@
 
   <main class="container">
     <h2>Sell Your Device</h2>
-    <!-- Sell form code here (unchanged from before) -->
+    <form id="sell-form">
+      <label for="device">Device Type:</label>
+      <input type="text" id="device" name="device" required>
+
+      <label for="condition">Condition:</label>
+      <select id="condition" name="condition" required>
+        <option value="">Select</option>
+        <option value="new">New</option>
+        <option value="like-new">Like New</option>
+        <option value="used">Used</option>
+        <option value="broken">Broken</option>
+      </select>
+
+      <label for="details">Additional Details:</label>
+      <textarea id="details" name="details" rows="4"></textarea>
+
+      <label for="contact">Your Contact Info:</label>
+      <input type="text" id="contact" name="contact" required>
+
+      <button type="submit">Submit for Quote</button>
+    </form>
   </main>
 
   <footer>
@@ -33,5 +53,6 @@
   </footer>
 </body>
 </html>
+
 
 

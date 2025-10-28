@@ -43,7 +43,7 @@ header {
 }
 
 .logo {
-  height: 50px;   /* adjust size as needed */
+  height: 50px;
   width: auto;
 }
 
@@ -232,6 +232,7 @@ footer {
   padding: 1rem;
   margin-top: 2rem;
 }
+
 
 
 

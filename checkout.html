@@ -25,7 +25,8 @@
 
   <main class="container">
     <h2>Checkout</h2>
-    <!-- Checkout form and summary code here (unchanged from before) -->
+    <div id="checkout-summary"></div>
+    <button onclick="clearCart(); window.location.href='index.html';" class="btn">Confirm & Return Home</button>
   </main>
 
   <footer>
@@ -33,10 +34,11 @@
   </footer>
 
   <script>
-    // Checkout summary + clear cart logic (unchanged from before)
+    displayCheckoutSummary();
   </script>
 </body>
 </html>
+
 
 
 
