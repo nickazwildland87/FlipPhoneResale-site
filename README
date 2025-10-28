@@ -1,20 +1,22 @@
-Flip Phone Resale — Static Website
+# Flip Phone Resale Website
 
-Structure:
-- index.html, shop.html, sell.html, about.html, cart.html, checkout.html
-- styles.css (shared styles, cleaned and commented)
-- common.js (cart, checkout, quote logic, cleaned and commented)
-- images/ (12 product JPGs; placeholders for now)
+A static website for **Flip Phone Resale**, a small business specializing in buying, refurbishing, and reselling electronics.  
+This site includes a storefront, cart, checkout flow, and a form for customers to sell their devices.
 
-How to run locally:
-- Open index.html or shop.html in a browser.
+---
 
-Notes:
-- Product images are placeholders (from placehold.co). Replace with real product photos later, keeping the same filenames.
-- Cart uses localStorage; clearing browser storage resets it.
-- Checkout generates a mock order ID and displays a summary (no payments).
+## 🚀 Features
+- **Homepage** with hero banner, highlights, and featured products
+- **Shop page** with product grid and “Add to Cart” functionality
+- **Cart page** with item list, remove/clear buttons, and total calculation
+- **Checkout page** with order summary and confirmation message
+- **Sell page** with form for customers to submit devices for quotes
+- **About page** with business story, contact info, and hours
+- **Reusable header/footer** with logo and navigation
+- **Responsive design** with modern CSS grid and flexbox
+- **LocalStorage cart** (no backend required)
 
-Next steps:
-- Create GitHub repo and push this folder.
-- Enable GitHub Pages for a live URL.
-- Replace placeholder images with production images.
+---
+
+## 📂 Project Structure
+

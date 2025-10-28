@@ -5,22 +5,51 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
   background-color: #f9f9f9;
   color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout wrappers */
+header, footer {
+  background: #222;
+  color: #fff;
+}
+
+main {
+  flex: 1;
 }
 
 /* Header & Navigation */
 header {
-  background: #222;
-  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1rem;
 }
 
+.branding {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.logo {
+  height: 50px;   /* adjust size as needed */
+  width: auto;
+}
+
 header h1 {
-  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
 nav {
@@ -80,13 +109,22 @@ button:hover {
   background: #005fa3;
 }
 
+/* Content blocks */
+section {
+  padding: 2rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 /* Products Grid */
 .products,
 .featured-products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
-  padding: 2rem;
 }
 
 .product {
@@ -108,8 +146,7 @@ button:hover {
   margin-bottom: 0.8rem;
 }
 
-.product h3,
-.product h4 {
+.product h3, .product h4 {
   margin-bottom: 0.5rem;
 }
 
@@ -186,16 +223,15 @@ form button {
 
 .highlights li {
   margin: 0.5rem 0;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 /* Footer */
 footer {
-  background: #222;
-  color: #fff;
   text-align: center;
   padding: 1rem;
   margin-top: 2rem;
 }
+
 
 

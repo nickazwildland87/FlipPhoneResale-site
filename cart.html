@@ -5,11 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Cart - Flip Phone Resale</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script src="common.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Flip Phone Resale</h1>
+    <div class="branding">
+      <img src="images/logo.png" alt="Flip Phone Resale Logo" class="logo">
+      <h1>Flip Phone Resale</h1>
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="shop.html">Shop Now</a>
@@ -19,7 +23,7 @@
     </nav>
   </header>
 
-  <main>
+  <main class="container">
     <h2>Your Shopping Cart</h2>
     <div id="cart-items"></div>
     <h3 id="cart-total">Total: $0.00</h3>
@@ -35,11 +39,13 @@
   </footer>
 
   <script>
-    // Load cart items when the page opens
     displayCart();
   </script>
 </body>
 </html>
+
+
+
 
 
 
