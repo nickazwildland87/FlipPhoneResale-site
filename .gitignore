@@ -1,3 +1,6 @@
+# Node modules (if using npm or bundlers)
+node_modules/
+
 # OS-specific files
 .DS_Store
 Thumbs.db
@@ -5,15 +8,23 @@ Thumbs.db
 # Logs
 *.log
 
-# Dependency / build directories (if you add tooling later)
-node_modules/
+# Build output
 dist/
 build/
 
-# IDE/editor settings
+# VS Code settings
 .vscode/
-.idea/
 
-# Temporary files
+# Environment variables
+.env
+
+# Mac system files
+._*
+
+# Cache
+.cache/
 *.tmp
-*.swp
+
+# Optional: ignore zip exports
+*.zip
+
