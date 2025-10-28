@@ -3,6 +3,8 @@
 A static website for **Flip Phone Resale**, a small business specializing in buying, refurbishing, and reselling electronics.  
 This site includes a storefront, cart, checkout flow, and a form for customers to sell their devices.
 
+![Deploy to GitHub Pages](https://img.shields.io/badge/deployed-GitHub%20Pages-blue?logo=github)
+
 ---
 
 ## 🚀 Features
@@ -19,4 +21,6 @@ This site includes a storefront, cart, checkout flow, and a form for customers t
 ---
 
 ## 📂 Project Structure
+
+
 
