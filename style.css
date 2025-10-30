@@ -168,16 +168,48 @@ section {
   padding: 0.8rem;
   margin-bottom: 0.8rem;
   border-radius: 4px;
+  flex-wrap: wrap;
 }
 
 .cart-item img {
   border-radius: 4px;
+  width: 60px;
+  height: auto;
 }
 
 .cart-actions {
   margin-top: 1rem;
   display: flex;
   gap: 1rem;
+}
+
+/* Quantity Controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.quantity-controls button {
+  background: #eee;
+  color: #333;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.quantity-controls button:hover {
+  background: #ddd;
+}
+
+.quantity-controls input[type="number"] {
+  width: 50px;
+  padding: 0.3rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 /* Forms */
@@ -228,9 +260,30 @@ form button {
   font-size: 1.05rem;
 }
 
+/* Checkout List */
+.checkout-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+  border-radius: 4px;
+}
+
+.checkout-list img {
+  border-radius: 4px;
+  width: 50px;
+  height: auto;
+}
+
 /* Footer */
 footer {
   text-align: center;
   padding: 1rem;
   margin-top: 2rem;
 }
+
+
+

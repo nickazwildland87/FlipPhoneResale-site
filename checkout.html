@@ -26,8 +26,17 @@
 
   <main class="container">
     <h2>Checkout</h2>
-    <div id="checkout-summary"></div>
-    <button onclick="clearCart(); window.location.href='index.html';" class="btn">Confirm & Return Home</button>
+
+    <form id="customer-form">
+      <label for="customer-name">Full Name</label>
+      <input type="text" id="customer-name" required>
+
+      <label for="customer-email">Email Address</label>
+      <input type="email" id="customer-email" required>
+    </form>
+
+    <div id="checkout-summary" class="checkout-list"></div>
+    <button onclick="confirmPurchase()" class="btn">Confirm & View Receipt</button>
   </main>
 
   <footer>
@@ -35,7 +44,61 @@
   </footer>
 
   <script>
+    function displayCheckoutSummary() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const summary = document.getElementById("checkout-summary");
+
+      if (cart.length === 0) {
+        summary.innerHTML = "<p>Your cart is empty.</p>";
+        return;
+      }
+
+      let total = 0;
+      summary.innerHTML = "";
+
+      cart.forEach((item, index) => {
+        const subtotal = item.price * item.quantity;
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" style="width:60px;height:auto;border-radius:4px;">
+          <span>${item.name} - $${item.price.toFixed(2)}</span>
+          <div class="quantity-controls">
+            <button onclick="changeQuantity(${index}, -1)">−</button>
+            <input type="number" value="${item.quantity}" readonly>
+            <button onclick="changeQuantity(${index}, 1)">+</button>
+          </div>
+          <span>Subtotal: $${subtotal.toFixed(2)}</span>
+        `;
+        summary.appendChild(div);
+        total += subtotal;
+      });
+
+      const totalDisplay = document.createElement("h3");
+      totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+      summary.appendChild(totalDisplay);
+    }
+
+    function confirmPurchase() {
+      const name = document.getElementById("customer-name").value.trim();
+      const email = document.getElementById("customer-email").value.trim();
+
+      if (!name || !email) {
+        alert("Please enter your name and email before confirming.");
+        return;
+      }
+
+      localStorage.setItem("customerName", name);
+      localStorage.setItem("customerEmail", email);
+      window.location.href = "receipt.html";
+    }
+
     displayCheckoutSummary();
   </script>
 </body>
 </html>
+
+
+
+
+
