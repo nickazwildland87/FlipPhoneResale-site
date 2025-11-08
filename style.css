@@ -1,6 +1,6 @@
 /* STYLE.CSS
     Updated with CSS Variables, mobile menu fix,
-    shop header, about page, and sell page classes.
+    shop header, about page, sell page, and checkout page classes.
 */
 
 :root {
@@ -123,6 +123,22 @@ a:hover {
     border-radius: 2px;
 }
 
+/* === GENERAL PAGE HEADER (for shop, about, checkout) === */
+.page-header {
+    background: var(--gradient-primary);
+    color: var(--color-bg-white);
+    padding: 60px 20px;
+    text-align: center;
+}
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.page-header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
 /* Hero Section (index.html) */
 .hero {
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
@@ -157,22 +173,7 @@ a:hover {
     letter-spacing: 1px;
 }
 
-/* Shop Page Header (shop.html) */
-.shop-header {
-    background: var(--gradient-primary);
-    color: var(--color-bg-white);
-    padding: 60px 20px;
-    text-align: center;
-}
-.shop-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-.shop-header p {
-    font-size: 1.1rem;
-    opacity: 0.95;
-}
-
+/* Shop Page (shop.html) uses .page-header */
 /* About Page (about.html) */
 .about-hero {
     background: var(--gradient-primary);
@@ -189,7 +190,6 @@ a:hover {
     font-size: 1.1rem;
     opacity: 0.95;
 }
-
 .about-content {
     background: var(--color-bg-white);
     padding: 2.5rem;
@@ -197,14 +197,12 @@ a:hover {
     box-shadow: 0 4px 18px var(--color-shadow-medium);
     margin-bottom: 3rem;
 }
-
 .about-section {
     margin-bottom: 2.5rem;
 }
 .about-section:last-child {
     margin-bottom: 0;
 }
-
 .about-section h2 {
     color: var(--color-primary);
     font-size: 1.8rem;
@@ -212,19 +210,16 @@ a:hover {
     border-bottom: 2px solid var(--color-bg-offwhite);
     padding-bottom: 0.5rem;
 }
-
 .about-section p {
     margin-bottom: 1rem;
     line-height: 1.7;
 }
-
 .values-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
-
 .value-card {
     background: var(--color-bg-light);
     border-radius: 10px;
@@ -233,20 +228,18 @@ a:hover {
     border: 1px solid #e0e0e0;
     transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .value-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 20px var(--color-shadow-light);
 }
-
 .value-card h3 {
     color: var(--color-secondary);
     margin-bottom: 0.5rem;
 }
 
-/* === NEW CSS FOR SELL.HTML === */
+/* Sell Page (sell.html) */
 .sell-section {
-    background: var(--color-bg-light); /* Using theme bg color */
+    background: var(--color-bg-light); 
     padding: 60px 0;
 }
 .sell-container {
@@ -269,7 +262,7 @@ a:hover {
 .sell-form input, .sell-form select, .sell-form textarea {
     width: 100%;
     margin-bottom: 1.4rem;
-    margin-top: 0.3rem; /* Added for spacing */
+    margin-top: 0.3rem;
     padding: 0.65rem 1rem;
     border-radius: 8px;
     border: 1px solid var(--color-border);
@@ -297,7 +290,114 @@ a:hover {
     margin-top: 1.2rem;
     margin-bottom: 1.5rem;
 }
-/* === END CSS FOR SELL.HTML === */
+
+/* === NEW CSS FOR CHECKOUT.HTML === */
+.checkout-section {
+    padding: 60px 0;
+    background-color: var(--color-bg-light);
+    min-height: 500px;
+}
+.checkout-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--color-bg-white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.order-summary {
+    background: var(--color-bg-light);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+.order-summary h2 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+.order-items .order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+.order-items .order-item span {
+    color: var(--color-text);
+}
+.order-items .order-item strong {
+    color: var(--color-primary);
+}
+.order-total {
+    border-top: 2px solid var(--color-border);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    font-size: 1.3rem;
+    text-align: right;
+    font-weight: bold;
+}
+.checkout-form {
+    text-align: left;
+}
+.checkout-form h3 {
+    color: var(--color-text);
+    margin: 2rem 0 1rem;
+    font-size: 1.3rem;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.checkout-submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--gradient-primary);
+    color: var(--color-bg-white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+}
+.checkout-submit-btn:hover {
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+}
+.checkout-note {
+    margin-top: 1rem;
+    color: #999;
+    font-size: 0.9rem;
+    text-align: center;
+}
+.back-to-shop {
+    text-align: center;
+    margin-top: 2rem;
+}
+.back-to-shop a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+/* === END CSS FOR CHECKOUT.HTML === */
 
 
 /* Trust Section */
@@ -726,6 +826,7 @@ a:hover {
 @media (max-width: 900px) {
     .footer-content { flex-direction: column; gap: 28px; }
     .nav-menu { gap: 1.1rem; }
+    .contact-grid { grid-template-columns: 1fr;}
 }
 @media (max-width: 700px) {
     .nav-container { padding: 1rem 5vw; }
@@ -734,6 +835,7 @@ a:hover {
     .newsletter-form { flex-direction: column; }
     .filter-controls { flex-direction: column; gap: 9px;}
     .contact-section { padding: 32px 1vw 50px 1vw;}
+    .form-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
     .navbar { font-size: 0.98rem; }
@@ -752,26 +854,17 @@ a:hover {
         z-index: 1200;
         padding: 0 1.5rem; /* Padding applied when open */
     }
-
-    /* === MOBILE MENU FIX === */
-    /* This class will be toggled by app.js */
     .nav-menu.nav-open {
         max-height: 300px; /* Adjust as needed */
         padding: 1.6rem 1.5rem;
     }
-    /* === END FIX === */
-
     .hamburger { display: flex; }
     .footer-section { min-width: unset; }
     .hero { padding: 44px 5vw 58px 5vw; }
-    
-    .about-content {
-        padding: 1.5rem;
-    }
-    .about-section h2 {
-        font-size: 1.5rem;
-    }
-    .sell-container {
-        padding: 1.5rem;
-    }
+    .about-content { padding: 1.5rem; }
+    .about-section h2 { font-size: 1.5rem; }
+    .sell-container { padding: 1.5rem; }
+    .checkout-container { padding: 1.5rem; }
+    .order-summary { padding: 1.5rem; }
+    .order-summary h2 { font-size: 1.5rem; }
 }
