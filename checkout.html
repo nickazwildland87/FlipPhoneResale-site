@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Checkout - Flip Phone Resale">
+    <title>Checkout - Flip Phone Resale</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="images/logo.jpg" alt="Flip Phone Resale Logo" class="logo-image">
+                <span class="logo-text">Flip Phone Resale</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="cart.html" class="cart-link">🛒 Cart <span id="cart-count">0</span></a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 20px; text-align: center;">
+        <h1 style="font-size: 2.5rem;">Checkout</h1>
+    </section>
+
+    <section style="padding: 60px 20px; background-color: #f9f9f9; min-height: 500px;">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <h2 style="color: #667eea; margin-bottom: 1rem; font-size: 1.8rem;">✓ Order Summary</h2>
+                    
+                    <div id="order-summary" style="background: #f9f9f9; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; text-align: left;">
+                        <div id="checkout-items"></div>
+                        <div style="border-top: 2px solid #eee; margin-top: 1rem; padding-top: 1rem;">
+                            <p style="font-size: 1.3rem; text-align: right;">
+                                <strong>Total: $<span id="checkout-total">0.00</span></strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <form onsubmit="processCheckout(event)" style="text-align: left;">
+                        <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.3rem;">Billing Information</h3>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">Full Name</label>
+                            <input type="text" placeholder="John Doe" required style="width: 100%; padding: 0.8rem; border: 2px solid #667eea; border-radius: 8px; font-size: 1rem;">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">Email Address</label>
+                            <input type="email" placeholder="john@example.com" required style="width: 100%; padding: 0.8rem; border: 2px solid #667eea; border-radius: 8px; font-size: 1rem;">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">Address</label>
+                            <input type="text" placeholder="123 Main Street" required style="width: 100%; padding: 0.8rem; border: 2px solid #667eea; border-radius: 8px; font-size: 1rem;">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">City</label>
+                                <input type="text" placeholder="Gilbert" required style="width: 100%; padding: 0.8rem; border: 2px solid #667eea; border-radius: 8px; font-size: 1rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">State/ZIP</label>
+                                <input type="text" placeholder="AZ 85201" required style="width: 100%; padding: 0.8rem; border: 2px solid #667eea; border-radius: 8px; font-size: 1rem;">
+                            </div>
+                        </div>
+
+                        <h3 style="color: #333; margin: 2rem 0 1rem; font-size: 1.3rem;">Payment Information</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">Card Number</label>
+                            <input type="text" placeholder="1234 5678 9012 3456" required style="width: 100%; padding: 0.8rem; border: 2px solid #667eea; border-radius: 8px; font-size: 1rem;">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">Expiry Date</label>
+                                <input type="text" placeholder="MM/YY" required style="width: 100%; padding: 0.8rem; border: 2px solid #667eea; border-radius: 8px; font-size: 1rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">CVV</label>
+                                <input type="text" placeholder="123" required style="width: 100%; padding: 0.8rem; border: 2px solid #667eea; border-radius: 8px; font-size: 1rem;">
+                            </div>
+                        </div>
+
+                        <button type="submit" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.1rem;">
+                            Complete Purchase
+                        </button>
+                    </form>
+
+                    <p style="margin-top: 1rem; color: #999; font-size: 0.9rem;">
+                        ℹ️ This is a demo. Payment is not actually processed. Your order will be reviewed and confirmed.
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="shop.html" style="color: #667eea; text-decoration: none; font-weight: 600;">← Back to Shopping</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Flip Phone Resale</h4>
+                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Flip Phone Resale. All rights reserved. | Gilbert, Arizona</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        function processCheckout(event) {
+            event.preventDefault();
+            alert('✓ Order submitted successfully!
+
+This is a demo. In production, payment would be processed here.
+
+Thank you for your purchase!');
+            cart = [];
+            updateCartCount();
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                try {
+                    cart = JSON.parse(savedCart);
+                    updateCartCount();
+                    
+                    let html = '';
+                    let total = 0;
+                    
+                    cart.forEach(item => {
+                        const itemTotal = item.price * item.quantity;
+                        total += itemTotal;
+                        html += `
+                            <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <span>${item.name} x${item.quantity}</span>
+                                <span style="color: #667eea; font-weight: bold;">$${itemTotal.toFixed(2)}</span>
+                            </div>
+                        `;
+                    });
+                    
+                    document.getElementById('checkout-items').innerHTML = html;
+                    document.getElementById('checkout-total').textContent = total.toFixed(2);
+                } catch (e) {
+                    console.log('Cart data error');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
