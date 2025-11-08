@@ -1,6 +1,6 @@
 // ==================== PRODUCT DATA ====================
 const products = [
-    // ... (Your 12 products remain unchanged) ...
+    // ... (Your 12 products) ...
     {
         id: 1,
         name: "Apple Watch Series 7 45 inch",
@@ -212,7 +212,8 @@ function checkout() {
     window.location.href = 'checkout.html';
 }
 
-// ==================== CHECKOUT PAGE LOGIC ====================
+// ==================== CHECKOUT & RECEIPT LOGIC ====================
+
 // Called from checkout.html form submission
 function processCheckout(event) {
     event.preventDefault(); // Stop the form from submitting
@@ -247,10 +248,15 @@ function processCheckout(event) {
     window.location.href = 'receipt.html';
 }
 
+// Called from receipt.html button
+function clearReceipt() {
+    localStorage.removeItem('finalOrder');
+    window.location.href = 'index.html';
+}
+
 
 // ==================== PRODUCT DISPLAY ====================
 function displayProducts(productsToDisplay = products) {
-    // ... (This function remains unchanged) ...
     const grid = document.getElementById('products-grid');
     if (!grid) return; 
     if (productsToDisplay.length === 0) {
@@ -277,7 +283,6 @@ function displayProducts(productsToDisplay = products) {
 
 // ==================== SEARCH & FILTER ====================
 function filterProducts() {
-    // ... (This function remains unchanged) ...
     const searchTerm = document.getElementById('search').value.toLowerCase();
     const filtered = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm) ||
@@ -288,7 +293,6 @@ function filterProducts() {
 }
 
 function sortProducts() {
-    // ... (This function remains unchanged) ...
     const sortValue = document.getElementById('sort').value;
     let sorted = [...products]; 
     
@@ -320,7 +324,6 @@ function sortProducts() {
 
 // ==================== NEWSLETTER ====================
 function subscribeNewsletter(event) {
-    // ... (This function remains unchanged) ...
     event.preventDefault();
     const email = document.getElementById('email').value;
     const messageDiv = document.getElementById('newsletter-message');
@@ -337,7 +340,6 @@ function subscribeNewsletter(event) {
 
 // ==================== CONTACT FORM ====================
 function sendContactForm(event) {
-    // ... (This function remains unchanged) ...
     event.preventDefault();
     alert('Thank you for your message! We will get back to you within 24 hours.\n\nThis is a demo. In production, this would send an email.');
     event.target.reset();
@@ -345,7 +347,6 @@ function sendContactForm(event) {
 
 // ==================== SELL FORM (from sell.html) ====================
 function processSellForm(event) {
-    // ... (This function remains unchanged) ...
     event.preventDefault();
     const form = event.target;
     const successDiv = document.getElementById('sell-success');
@@ -370,7 +371,6 @@ function processSellForm(event) {
 
 // ==================== FAQ ACCORDION ====================
 function toggleFAQ(button) {
-    // ... (This function remains unchanged) ...
     const answer = button.nextElementSibling;
     const toggle = button.querySelector('.faq-toggle');
     if (!answer || !toggle) return;
@@ -394,7 +394,6 @@ function toggleFAQ(button) {
 
 // ==================== UTILITY FUNCTIONS ====================
 function scrollToShop() {
-    // ... (This function remains unchanged) ...
     const shopElement = document.getElementById('shop') || document.querySelector('.products-grid');
     if (shopElement) {
         shopElement.scrollIntoView({ behavior: 'smooth' });
@@ -402,7 +401,6 @@ function scrollToShop() {
 }
 
 function showNotification(message) {
-    // ... (This function remains unchanged) ...
     const notification = document.createElement('div');
     notification.style.cssText = `
         position: fixed;
@@ -438,20 +436,20 @@ document.addEventListener('DOMContentLoaded', function() {
     if (savedCart) {
         try {
             cart = JSON.parse(savedCart);
-            updateCartCount();
         } catch (e) {
             console.error('Cart data corrupted, starting fresh');
             cart = [];
             localStorage.removeItem('cart');
         }
     }
+    updateCartCount(); // Update count on every page load
 
     // Display products on pages that have the grid
     if (document.getElementById('products-grid')) {
         displayProducts();
     }
     
-    // === NEW LOGIC: POPULATE CHECKOUT.HTML SUMMARY ===
+    // POPULATE CHECKOUT.HTML SUMMARY
     const checkoutItemsContainer = document.getElementById('checkout-items');
     if (checkoutItemsContainer && savedCart) {
         let html = '';
@@ -468,6 +466,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         checkoutItemsContainer.innerHTML = html;
         document.getElementById('checkout-total').textContent = total.toFixed(2);
+    }
+    
+    // === NEW LOGIC: POPULATE RECEIPT.HTML ===
+    const receiptSummary = document.getElementById('receipt-summary');
+    if (receiptSummary) {
+        const orderData = JSON.parse(localStorage.getItem('finalOrder'));
+        if (orderData) {
+            let itemsHtml = '<ul class="receipt-list">';
+            orderData.cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                itemsHtml += `
+                    <li class="receipt-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <span>${item.name} (x${item.quantity}) - <strong>$${subtotal.toFixed(2)}</strong></span>
+                    </li>
+                `;
+            });
+            itemsHtml += '</ul>';
+            
+            receiptSummary.innerHTML = `
+                <p>
+                    <strong>Order ID:</strong> ${orderData.orderId}<br>
+                    <strong>Name:</strong> ${orderData.customerName}<br>
+                    <strong>Email:</strong> ${orderData.customerEmail}
+                </p>
+                ${itemsHtml}
+                <h3>Total Paid: $${orderData.total}</h3>
+            `;
+        } else {
+            receiptSummary.innerHTML = "<p>No order details found. Please return to the shop.</p>";
+        }
     }
     // === END NEW LOGIC ===
 
