@@ -1,6 +1,6 @@
 /* STYLE.CSS
-    Updated with CSS Variables for maintainability
-    and a fix for the mobile menu.
+    Updated with CSS Variables, mobile menu fix,
+    and .shop-header class.
 */
 
 :root {
@@ -145,6 +145,24 @@ a:hover {
     background: linear-gradient(135deg, var(--color-accent-dark), var(--color-accent));
     letter-spacing: 1px;
 }
+
+/* === NEW CLASS FOR SHOP.HTML === */
+.shop-header {
+    background: var(--gradient-primary);
+    color: var(--color-bg-white);
+    padding: 60px 20px;
+    text-align: center;
+}
+.shop-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.shop-header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+/* === END NEW CLASS === */
+
 
 /* Trust Section */
 .trust-section {
