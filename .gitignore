@@ -1,38 +1,36 @@
-# Node modules (if using npm or bundlers)
+# Ignore dependency directories
+# This is the most important one for any web project
 node_modules/
 
-# OS-specific files
-.DS_Store
-Thumbs.db
-._*
+# Ignore sensitive environment variables
+# NEVER commit API keys or passwords
+.env
+.env.local
 
-# Logs
+# Ignore Operating System files
+.DS_Store
+.AppleDouble
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*~
+
+# Ignore log files
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
+yarn-error.log*
 
-# Build output
-dist/
-build/
-
-# Editor settings
+# Ignore code editor directories
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
+.atom/
 
-# Environment variables
-.env
-
-# Cache files
-.cache/
-*.tmp
-
-# Test coverage
-coverage/
-.nyc_output
-
-# System swap files
-*.swp
-*.swo
-
-# Optional: ignore zip exports
-*.zip
+# Ignore build/distribution folders
+dist/
+build/
+.out/
