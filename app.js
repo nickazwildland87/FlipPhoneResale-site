@@ -155,6 +155,8 @@ function updateCartCount() {
 
 function displayCart() {
     const cartItemsContainer = document.getElementById('cart-items');
+    if (!cartItemsContainer) return; // Exit if element not found
+    
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">Your cart is empty</p>';
         document.getElementById('cart-total').textContent = '0.00';
@@ -214,7 +216,7 @@ This is a demo. In production, this would redirect to a payment processor.`);
 // ==================== PRODUCT DISPLAY ====================
 function displayProducts(productsToDisplay = products) {
     const grid = document.getElementById('products-grid');
-    if (!grid) return;
+    if (!grid) return; // Only run if on a page with the product grid
     if (productsToDisplay.length === 0) {
         grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999; padding: 2rem;">No products found</p>';
         return;
@@ -249,21 +251,33 @@ function filterProducts() {
 }
 
 function sortProducts() {
-    const sortValue = document.getElementById('sort').value;
-    let sorted = [...products];
+    const sortValue = document.getElementById('sort')..value;
+    let sorted = [...products]; // Create a new array
+    
+    // Get current products from search filter if any
+    const searchTerm = document.getElementById('search').value.toLowerCase();
+    if(searchTerm) {
+        sorted = products.filter(product =>
+            product.name.toLowerCase().includes(searchTerm) ||
+            product.condition.toLowerCase().includes(searchTerm) ||
+            (product.category && product.category.toLowerCase().includes(searchTerm))
+        );
+    }
+
     switch (sortValue) {
         case 'price-low':
             sorted.sort((a, b) => a.price - b.price);
             break;
         case 'price-high':
-            sorted.sort((a, b) => b.price - a.price);
+            sorted.sort((a, b) => b.price - b.price);
             break;
         case 'newest':
-            sorted.reverse();
+            sorted.reverse(); // Assuming original order is oldest to newest
             break;
         case 'featured':
         default:
-            sorted = [...products];
+             // Do nothing, keep the filtered or default list
+             break;
     }
     displayProducts(sorted);
 }
@@ -273,7 +287,7 @@ function subscribeNewsletter(event) {
     event.preventDefault();
     const email = document.getElementById('email').value;
     const messageDiv = document.getElementById('newsletter-message');
-    if (!email.includes('@')) {
+    if (!email || !email.includes('@')) {
         messageDiv.innerHTML = '<p style="color: #ff6b6b;">Please enter a valid email.</p>';
         return;
     }
@@ -297,12 +311,18 @@ This is a demo. In production, this would send an email.');
 function toggleFAQ(button) {
     const answer = button.nextElementSibling;
     const toggle = button.querySelector('.faq-toggle');
+    if (!answer || !toggle) return;
+
+    // Close all other answers
     document.querySelectorAll('.faq-answer').forEach(item => {
         if (item !== answer) {
             item.style.display = 'none';
-            item.previousElementSibling.querySelector('.faq-toggle').textContent = '+';
+            const otherToggle = item.previousElementSibling.querySelector('.faq-toggle');
+            if(otherToggle) otherToggle.textContent = '+';
         }
     });
+
+    // Toggle the clicked one
     if (answer.style.display === 'none' || answer.style.display === '') {
         answer.style.display = 'block';
         toggle.textContent = '-';
@@ -336,8 +356,16 @@ function showNotification(message) {
     `;
     notification.textContent = message;
     document.body.appendChild(notification);
+    
+    // Add keyframes for animation
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `@keyframes slideDown { from { top: -100px; opacity: 0; } to { top: 80px; opacity: 1; } }`;
+    document.head.appendChild(styleSheet);
+
     setTimeout(() => {
         notification.remove();
+        styleSheet.remove();
     }, 3000);
 }
 
@@ -350,10 +378,15 @@ document.addEventListener('DOMContentLoaded', function() {
             cart = JSON.parse(savedCart);
             updateCartCount();
         } catch (e) {
-            console.log('Cart data corrupted, starting fresh');
+            console.error('Cart data corrupted, starting fresh');
+            cart = [];
+            localStorage.removeItem('cart');
         }
     }
+
+    // Display products on pages that have the grid
     displayProducts();
+
     // Cart link click
     const cartLink = document.querySelector('.cart-link');
     if (cartLink) {
@@ -362,23 +395,24 @@ document.addEventListener('DOMContentLoaded', function() {
             openCart();
         });
     }
+
     // Close modal when clicking outside
-    window.onclick = function(event) {
-        const modal = document.getElementById('cartModal');
-        if (modal && event.target === modal) {
-            closeCart();
-        }
-    };
-    // Mobile menu toggle
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeCart();
+            }
+        });
+    }
+
+    // === MOBILE MENU FIX ===
+    // This code is updated to match the .nav-open class in style.css
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-    if (hamburger) {
+    if (hamburger && navMenu) {
         hamburger.addEventListener('click', function() {
-            if (navMenu.style.maxHeight === '0px' || navMenu.style.maxHeight === '') {
-                navMenu.style.maxHeight = '300px';
-            } else {
-                navMenu.style.maxHeight = '0px';
-            }
+            navMenu.classList.toggle('nav-open');
         });
     }
 });
