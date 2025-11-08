@@ -1,6 +1,6 @@
 /* STYLE.CSS
     Updated with CSS Variables, mobile menu fix,
-    .shop-header class, and all .about classes.
+    shop header, about page, and sell page classes.
 */
 
 :root {
@@ -94,6 +94,10 @@ a:hover {
 }
 .nav-menu li {
     position: relative;
+}
+.nav-menu a.active {
+    font-weight: bold;
+    color: var(--color-secondary);
 }
 .cart-link {
     background: var(--gradient-primary);
@@ -239,6 +243,62 @@ a:hover {
     color: var(--color-secondary);
     margin-bottom: 0.5rem;
 }
+
+/* === NEW CSS FOR SELL.HTML === */
+.sell-section {
+    background: var(--color-bg-light); /* Using theme bg color */
+    padding: 60px 0;
+}
+.sell-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: var(--color-bg-white);
+    border-radius: 16px;
+    box-shadow: 0 4px 18px var(--color-shadow-medium);
+    padding: 2.2rem 2.5rem;
+}
+.sell-container h1 {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1.7rem;
+}
+.sell-form label {
+    font-weight: 600;
+    color: var(--color-text);
+}
+.sell-form input, .sell-form select, .sell-form textarea {
+    width: 100%;
+    margin-bottom: 1.4rem;
+    margin-top: 0.3rem; /* Added for spacing */
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    font-size: 1rem;
+}
+.sell-form button {
+    padding: 0.9rem 2.2rem;
+    border-radius: 8px;
+    border: none;
+    background: var(--gradient-primary);
+    color: var(--color-bg-white);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+.sell-form button:hover {
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+}
+.sell-success {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+/* === END CSS FOR SELL.HTML === */
+
 
 /* Trust Section */
 .trust-section {
@@ -705,11 +765,13 @@ a:hover {
     .footer-section { min-width: unset; }
     .hero { padding: 44px 5vw 58px 5vw; }
     
-    /* Responsive adjustment for About page */
     .about-content {
         padding: 1.5rem;
     }
     .about-section h2 {
         font-size: 1.5rem;
+    }
+    .sell-container {
+        padding: 1.5rem;
     }
 }
