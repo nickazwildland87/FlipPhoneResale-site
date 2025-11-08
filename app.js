@@ -204,13 +204,12 @@ function checkout() {
         alert('Your cart is empty!');
         return;
     }
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    alert(`Proceeding to checkout with ${cart.length} item(s) - Total: $${total.toFixed(2)}
-
-This is a demo. In production, this would redirect to a payment processor.`);
-    cart = [];
-    updateCartCount();
-    closeCart();
+    
+    // Save cart and total to localStorage so checkout.html can read it
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Redirect to the checkout page
+    window.location.href = 'checkout.html';
 }
 
 // ==================== PRODUCT DISPLAY ====================
@@ -251,7 +250,7 @@ function filterProducts() {
 }
 
 function sortProducts() {
-    const sortValue = document.getElementById('sort')..value;
+    const sortValue = document.getElementById('sort').value;
     let sorted = [...products]; // Create a new array
     
     // Get current products from search filter if any
@@ -305,6 +304,30 @@ function sendContactForm(event) {
 
 This is a demo. In production, this would send an email.');
     event.target.reset();
+}
+
+// ==================== SELL FORM (from sell.html) ====================
+function processSellForm(event) {
+    event.preventDefault();
+    const form = event.target;
+    const successDiv = document.getElementById('sell-success');
+    if (!successDiv) return; // Exit if not on sell page
+
+    const device = form.device.value.trim();
+    const condition = form.condition.value;
+    const contact = form.contact.value.trim();
+    
+    if (!device || !condition || !contact) {
+        successDiv.innerHTML = "<span style='color:#ff6b6b'>Please complete all required fields.</span>";
+        return;
+    }
+    
+    successDiv.textContent = "Thank you! We received your request. We'll email you within 1 business day with a competitive cash offer.";
+    form.reset();
+    
+    setTimeout(() => {
+        successDiv.textContent = "";
+    }, 7000);
 }
 
 // ==================== FAQ ACCORDION ====================
@@ -385,7 +408,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Display products on pages that have the grid
-    displayProducts();
+    if (document.getElementById('products-grid')) {
+        displayProducts();
+    }
 
     // Cart link click
     const cartLink = document.querySelector('.cart-link');
