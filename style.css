@@ -1,3 +1,24 @@
+/* STYLE.CSS
+    Updated with CSS Variables for maintainability
+    and a fix for the mobile menu.
+*/
+
+:root {
+    --color-primary: #667eea;
+    --color-secondary: #764ba2;
+    --color-accent: #43cea2;
+    --color-accent-dark: #185a9d;
+    --color-text: #263238;
+    --color-bg-light: #f5f6fa;
+    --color-bg-offwhite: #ebedf8;
+    --color-bg-white: #fff;
+    --color-border: #dedede;
+    --color-shadow-light: rgba(102, 126, 234, 0.07);
+    --color-shadow-medium: rgba(102, 126, 234, 0.13);
+    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    --gradient-secondary: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+}
+
 /* General Reset */
 *,
 *::before,
@@ -9,25 +30,25 @@
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f5f6fa;
-    color: #263238;
+    background: var(--color-bg-light);
+    color: var(--color-text);
     font-size: 16px;
     line-height: 1.6;
 }
 
 a {
-    color: #667eea;
+    color: var(--color-primary);
     text-decoration: none;
     transition: color .2s;
 }
 a:hover {
-    color: #764ba2;
+    color: var(--color-secondary);
 }
 
 /* Navbar */
 .navbar {
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.07);
+    background: var(--color-bg-white);
+    box-shadow: 0 2px 8px var(--color-shadow-light);
     position: sticky;
     top: 0;
     width: 100%;
@@ -51,13 +72,13 @@ a:hover {
     object-fit: cover;
     border-radius: 8px;
     margin-right: 0.6rem;
-    background: #ebedf8;
+    background: var(--color-bg-offwhite);
 }
 .logo-text {
     font-size: 1.5rem;
     font-weight: bold;
     letter-spacing: 2px;
-    color: #667eea;
+    color: var(--color-primary);
 }
 .nav-menu {
     display: flex;
@@ -68,15 +89,15 @@ a:hover {
     position: relative;
 }
 .cart-link {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #fff !important;
+    background: var(--gradient-primary);
+    color: var(--color-bg-white) !important;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     font-weight: 600;
     transition: background .2s;
 }
 .cart-link:hover {
-    background: linear-gradient(135deg, #764ba2, #667eea);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
 }
 .hamburger {
     display: none;
@@ -87,13 +108,13 @@ a:hover {
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: #667eea;
+    background: var(--color-primary);
     border-radius: 2px;
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     color: white;
     text-align: center;
     padding: 80px 20px 80px 20px;
@@ -109,8 +130,8 @@ a:hover {
 }
 .cta-button {
     padding: 0.9rem 2.5rem;
-    background: linear-gradient(135deg, #43cea2, #185a9d);
-    color: #fff;
+    background: var(--gradient-secondary);
+    color: var(--color-bg-white);
     font-size: 1.12rem;
     border: none;
     border-radius: 8px;
@@ -121,7 +142,7 @@ a:hover {
     transition: all .18s;
 }
 .cta-button:hover {
-    background: linear-gradient(135deg, #185a9d, #43cea2);
+    background: linear-gradient(135deg, var(--color-accent-dark), var(--color-accent));
     letter-spacing: 1px;
 }
 
@@ -132,11 +153,11 @@ a:hover {
     flex-wrap: wrap;
     gap: 2rem;
     padding: 30px 10px;
-    background: #fff;
+    background: var(--color-bg-white);
     box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.16);
 }
 .trust-card {
-    background: linear-gradient(135deg, #f5f6fa, #ebedf8 90%);
+    background: linear-gradient(135deg, var(--color-bg-light), var(--color-bg-offwhite) 90%);
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(76, 110, 245, 0.08);
     padding: 1.7rem 2.2rem;
@@ -147,7 +168,7 @@ a:hover {
 
 /* Filter/Sort Section */
 .filter-section {
-    background: #fff;
+    background: var(--color-bg-white);
     box-shadow: 0 2px 6px rgba(102,126,234,0.08);
     padding: 20px 0;
 }
@@ -165,13 +186,13 @@ a:hover {
 #sort {
     padding: 0.4rem 1rem;
     border-radius: 6px;
-    border: 1px solid #dedede;
-    background: #f5f6fa;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-light);
 }
 .search-box input {
     padding: 0.4rem 1rem;
     border-radius: 6px;
-    border: 1px solid #dedede;
+    border: 1px solid var(--color-border);
     background: #f8f8fc;
     width: 220px;
 }
@@ -184,9 +205,9 @@ a:hover {
     margin: 2rem 0;
 }
 .product-card {
-    background: #fff;
+    background: var(--color-bg-white);
     border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(102,126,234,0.13);
+    box-shadow: 0 4px 18px var(--color-shadow-medium);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -200,7 +221,7 @@ a:hover {
     position: relative;
     text-align: center;
     padding: 1.3rem 0 0.7rem 0;
-    background: #f5f6fa;
+    background: var(--color-bg-light);
     min-height: 200px;
 }
 .product-image img {
@@ -216,8 +237,8 @@ a:hover {
     position: absolute;
     top: 12px;
     left: 18px;
-    background: linear-gradient(135deg, #667eea, #43cea2);
-    color: #fff;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: var(--color-bg-white);
     border-radius: 6px;
     font-size: 0.82rem;
     padding: 2px 10px;
@@ -240,7 +261,7 @@ a:hover {
     color: #44a1d9;
 }
 .price {
-    color: #667eea;
+    color: var(--color-primary);
     font-weight: 700;
     margin: 0.4rem 0 0.2rem 0;
 }
@@ -253,25 +274,25 @@ a:hover {
 /* Add-to-Cart Button */
 .add-to-cart {
     padding: 0.7rem 1.25rem;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #fff;
+    background: var(--gradient-primary);
+    color: var(--color-bg-white);
     font-size: 1.01rem;
     border: none;
     border-radius: 7px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 2px 8px 0 rgba(102,126,234,0.13);
+    box-shadow: 0 2px 8px 0 var(--color-shadow-medium);
     transition: background .16s, box-shadow .18s;
 }
 .add-to-cart:hover {
-    background: linear-gradient(135deg, #764ba2, #667eea);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
     box-shadow: 0 5px 20px 0 rgba(118,75,162,.08);
 }
 
 /* Newsletter */
 .newsletter {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: var(--color-bg-white);
     text-align: center;
     padding: 60px 0 60px 0;
 }
@@ -293,7 +314,7 @@ a:hover {
     padding: 0.7rem 1.8rem;
     border-radius: 9px;
     border: none;
-    background: #43cea2;
+    background: var(--color-accent);
     color: white;
     font-size: 1.07rem;
     font-weight: 600;
@@ -301,7 +322,7 @@ a:hover {
     transition: background .16s;
 }
 .newsletter-form button:hover {
-    background: #185a9d;
+    background: var(--color-accent-dark);
 }
 .newsletter-message {
     margin-top: 18px;
@@ -309,7 +330,7 @@ a:hover {
 
 /* Testimonials */
 .testimonials {
-    background: #fff;
+    background: var(--color-bg-white);
     padding: 64px 0 44px 0;
     box-shadow: 0 2px 12px 0 rgba(102,126,234,0.08);
 }
@@ -320,7 +341,7 @@ a:hover {
     margin-top: 2rem;
 }
 .testimonial-card {
-    background: linear-gradient(135deg, #f5f6fa, #ebedf8 90%);
+    background: linear-gradient(135deg, var(--color-bg-light), var(--color-bg-offwhite) 90%);
     border-radius: 10px;
     padding: 1.7rem 2rem;
     box-shadow: 0 2px 12px rgba(67, 206, 162, 0.05);
@@ -355,7 +376,7 @@ a:hover {
     .contact-grid { grid-template-columns: 1fr;}
 }
 .faq-section h3, .contact-info h3 {
-    color: #667eea;
+    color: var(--color-primary);
     font-size: 1.3rem;
     margin-bottom: 1rem;
 }
@@ -365,14 +386,14 @@ a:hover {
 .faq-question {
     width: 100%;
     padding: 0.6rem 1.2rem;
-    background: #fff;
+    background: var(--color-bg-white);
     font-size: 1.05rem;
     text-align: left;
     font-weight: 600;
     border-radius: 8px;
-    border: 1px solid #dedede;
+    border: 1px solid var(--color-border);
     cursor: pointer;
-    color: #667eea;
+    color: var(--color-primary);
     margin-bottom: 6px;
     outline: none;
     display: flex;
@@ -392,7 +413,7 @@ a:hover {
     color: #444;
 }
 .contact-info {
-    background: #fff;
+    background: var(--color-bg-white);
     border-radius: 10px;
     padding: 2rem 2.1rem;
     box-shadow: 0 2px 13px #667eea17;
@@ -406,14 +427,14 @@ a:hover {
     margin-bottom: 1rem;
     padding: 0.7rem 1rem;
     border-radius: 8px;
-    border: 1px solid #dedede;
+    border: 1px solid var(--color-border);
     font-size: 1rem;
 }
 .contact-form .submit-btn {
     padding: 0.8rem 1.8rem;
     border-radius: 9px;
     border: none;
-    background: #667eea;
+    background: var(--color-primary);
     color: white;
     font-size: 1.07rem;
     font-weight: 600;
@@ -421,13 +442,13 @@ a:hover {
     transition: background .16s;
 }
 .contact-form .submit-btn:hover {
-    background: #764ba2;
+    background: var(--color-secondary);
 }
 
 /* Footer */
 .footer {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: var(--color-bg-white);
     padding-top: 40px;
     padding-bottom: 16px;
     margin-top: 48px;
@@ -445,7 +466,7 @@ a:hover {
     flex: 1 1 250px;
 }
 .footer-section h4 {
-    color: #fff;
+    color: var(--color-bg-white);
     font-size: 1.15rem;
     margin-bottom: 13px;
 }
@@ -457,7 +478,7 @@ a:hover {
     margin-bottom: 8px;
 }
 .footer-section ul li a {
-    color: #fff;
+    color: var(--color-bg-white);
     font-size: 1rem;
     opacity: 0.87;
 }
@@ -467,7 +488,7 @@ a:hover {
 }
 .social-links a {
     margin-right: 18px;
-    color: #fff;
+    color: var(--color-bg-white);
     display: inline-block;
     font-size: 1.35rem;
     opacity: 0.81;
@@ -497,7 +518,7 @@ a:hover {
     background-color: rgba(42, 47, 67, 0.25);
 }
 .cart-content {
-    background: #fff;
+    background: var(--color-bg-white);
     margin: 6rem auto 2rem auto;
     padding: 2.9rem 2.2rem;
     border-radius: 18px;
@@ -505,13 +526,13 @@ a:hover {
     box-shadow: 0 8px 38px 7px #667eea32;
     position: relative;
 }
-.cart-content h2 { color: #667eea; margin-bottom: 0.6rem; }
+.cart-content h2 { color: var(--color-primary); margin-bottom: 0.6rem; }
 .cart-content .close {
     position: absolute;
     right: 30px;
     top: 30px;
     font-size: 2rem;
-    color: #667eea;
+    color: var(--color-primary);
     cursor: pointer;
     opacity: 0.76;
     background: none;
@@ -527,13 +548,13 @@ a:hover {
 .cart-total {
     margin-top: 1.3rem;
     font-size: 1.15rem;
-    color: #263238;
+    color: var(--color-text);
     font-weight: bold;
 }
 .checkout-btn {
     margin-top: 1.2rem;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #fff;
+    background: var(--gradient-primary);
+    color: var(--color-bg-white);
     border: none;
     padding: 0.8rem 1.6rem;
     border-radius: 8px;
@@ -544,7 +565,7 @@ a:hover {
     width: 100%;
 }
 .checkout-btn:hover {
-    background: linear-gradient(135deg, #764ba2, #667eea);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
 }
 
 /* Responsive */
@@ -565,18 +586,27 @@ a:hover {
     .nav-menu {
         display: block;
         position: absolute;
-        background: #fff;
+        background: var(--color-bg-white);
         top: 70px;
         right: 0;
         width: 70vw;
-        max-height: 0px;
+        max-height: 0px; /* Hidden by default */
         overflow: hidden;
         box-shadow: 0 9px 30px #667eea21;
         border-radius: 0 0 12px 12px;
         transition: max-height .36s cubic-bezier(.35,1.13,.48,1.02);
         z-index: 1200;
+        padding: 0 1.5rem; /* Padding applied when open */
+    }
+
+    /* === MOBILE MENU FIX === */
+    /* This class will be toggled by app.js */
+    .nav-menu.nav-open {
+        max-height: 300px; /* Adjust as needed */
         padding: 1.6rem 1.5rem;
     }
+    /* === END FIX === */
+
     .hamburger { display: flex; }
     .footer-section { min-width: unset; }
     .hero { padding: 44px 5vw 58px 5vw; }
