@@ -1,5 +1,6 @@
 // ==================== PRODUCT DATA ====================
 const products = [
+    // ... (Your 12 products remain unchanged) ...
     {
         id: 1,
         name: "Apple Watch Series 7 45 inch",
@@ -143,7 +144,7 @@ function addToCart(productId) {
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     updateCartCount();
-    displayCart();
+    displayCart(); // Update the modal if it's open
 }
 
 function updateCartCount() {
@@ -168,13 +169,13 @@ function displayCart() {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
         html += `
-            <div class="cart-item" style="display: flex; justify-content: space-between; padding: 1rem; border-bottom: 1px solid #eee; align-items: center;">
+            <div class="cart-item">
                 <div>
                     <p style="font-weight: 600; margin-bottom: 0.3rem;">${item.name}</p>
                     <p style="color: #999; font-size: 0.9rem;">Qty: ${item.quantity}</p>
                 </div>
                 <div style="text-align: right;">
-                    <p style="color: #667eea; font-weight: bold;">$${(itemTotal).toFixed(2)}</p>
+                    <p style="color: var(--color-primary); font-weight: bold;">$${(itemTotal).toFixed(2)}</p>
                     <button onclick="removeFromCart(${item.id})" style="background: #ff6b6b; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Remove</button>
                 </div>
             </div>
@@ -199,23 +200,59 @@ function closeCart() {
     }
 }
 
+// Called from Cart Modal
 function checkout() {
     if (cart.length === 0) {
         alert('Your cart is empty!');
         return;
     }
-    
-    // Save cart and total to localStorage so checkout.html can read it
+    // Save cart to localStorage so checkout.html can read it
     localStorage.setItem('cart', JSON.stringify(cart));
-    
     // Redirect to the checkout page
     window.location.href = 'checkout.html';
 }
 
+// ==================== CHECKOUT PAGE LOGIC ====================
+// Called from checkout.html form submission
+function processCheckout(event) {
+    event.preventDefault(); // Stop the form from submitting
+    
+    const form = event.target;
+    const customerName = form.querySelector('#fullName').value;
+    const customerEmail = form.querySelector('#email').value;
+
+    const savedCart = localStorage.getItem('cart');
+    if (!savedCart || JSON.parse(savedCart).length === 0) {
+        alert("Your cart is empty. Cannot process order.");
+        window.location.href = 'shop.html';
+        return;
+    }
+
+    // Save the final order details for the receipt page
+    const finalOrder = {
+        cart: JSON.parse(savedCart),
+        customerName: customerName,
+        customerEmail: customerEmail,
+        orderId: new Date().getTime(), // Simple unique order ID
+        total: document.getElementById('checkout-total').textContent
+    };
+    localStorage.setItem('finalOrder', JSON.stringify(finalOrder));
+
+    // Clear the active cart
+    cart = [];
+    localStorage.removeItem('cart'); // Clear the working cart
+    updateCartCount(); // Update the navbar count to 0
+
+    // Redirect to the receipt page
+    window.location.href = 'receipt.html';
+}
+
+
 // ==================== PRODUCT DISPLAY ====================
 function displayProducts(productsToDisplay = products) {
+    // ... (This function remains unchanged) ...
     const grid = document.getElementById('products-grid');
-    if (!grid) return; // Only run if on a page with the product grid
+    if (!grid) return; 
     if (productsToDisplay.length === 0) {
         grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999; padding: 2rem;">No products found</p>';
         return;
@@ -240,6 +277,7 @@ function displayProducts(productsToDisplay = products) {
 
 // ==================== SEARCH & FILTER ====================
 function filterProducts() {
+    // ... (This function remains unchanged) ...
     const searchTerm = document.getElementById('search').value.toLowerCase();
     const filtered = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm) ||
@@ -250,10 +288,10 @@ function filterProducts() {
 }
 
 function sortProducts() {
+    // ... (This function remains unchanged) ...
     const sortValue = document.getElementById('sort').value;
-    let sorted = [...products]; // Create a new array
+    let sorted = [...products]; 
     
-    // Get current products from search filter if any
     const searchTerm = document.getElementById('search').value.toLowerCase();
     if(searchTerm) {
         sorted = products.filter(product =>
@@ -271,11 +309,10 @@ function sortProducts() {
             sorted.sort((a, b) => b.price - b.price);
             break;
         case 'newest':
-            sorted.reverse(); // Assuming original order is oldest to newest
+            sorted.reverse(); 
             break;
         case 'featured':
         default:
-             // Do nothing, keep the filtered or default list
              break;
     }
     displayProducts(sorted);
@@ -283,6 +320,7 @@ function sortProducts() {
 
 // ==================== NEWSLETTER ====================
 function subscribeNewsletter(event) {
+    // ... (This function remains unchanged) ...
     event.preventDefault();
     const email = document.getElementById('email').value;
     const messageDiv = document.getElementById('newsletter-message');
@@ -299,19 +337,19 @@ function subscribeNewsletter(event) {
 
 // ==================== CONTACT FORM ====================
 function sendContactForm(event) {
+    // ... (This function remains unchanged) ...
     event.preventDefault();
-    alert('Thank you for your message! We will get back to you within 24 hours.
-
-This is a demo. In production, this would send an email.');
+    alert('Thank you for your message! We will get back to you within 24 hours.\n\nThis is a demo. In production, this would send an email.');
     event.target.reset();
 }
 
 // ==================== SELL FORM (from sell.html) ====================
 function processSellForm(event) {
+    // ... (This function remains unchanged) ...
     event.preventDefault();
     const form = event.target;
     const successDiv = document.getElementById('sell-success');
-    if (!successDiv) return; // Exit if not on sell page
+    if (!successDiv) return; 
 
     const device = form.device.value.trim();
     const condition = form.condition.value;
@@ -332,11 +370,11 @@ function processSellForm(event) {
 
 // ==================== FAQ ACCORDION ====================
 function toggleFAQ(button) {
+    // ... (This function remains unchanged) ...
     const answer = button.nextElementSibling;
     const toggle = button.querySelector('.faq-toggle');
     if (!answer || !toggle) return;
 
-    // Close all other answers
     document.querySelectorAll('.faq-answer').forEach(item => {
         if (item !== answer) {
             item.style.display = 'none';
@@ -345,7 +383,6 @@ function toggleFAQ(button) {
         }
     });
 
-    // Toggle the clicked one
     if (answer.style.display === 'none' || answer.style.display === '') {
         answer.style.display = 'block';
         toggle.textContent = '-';
@@ -357,6 +394,7 @@ function toggleFAQ(button) {
 
 // ==================== UTILITY FUNCTIONS ====================
 function scrollToShop() {
+    // ... (This function remains unchanged) ...
     const shopElement = document.getElementById('shop') || document.querySelector('.products-grid');
     if (shopElement) {
         shopElement.scrollIntoView({ behavior: 'smooth' });
@@ -364,6 +402,7 @@ function scrollToShop() {
 }
 
 function showNotification(message) {
+    // ... (This function remains unchanged) ...
     const notification = document.createElement('div');
     notification.style.cssText = `
         position: fixed;
@@ -380,7 +419,6 @@ function showNotification(message) {
     notification.textContent = message;
     document.body.appendChild(notification);
     
-    // Add keyframes for animation
     const styleSheet = document.createElement("style");
     styleSheet.type = "text/css";
     styleSheet.innerText = `@keyframes slideDown { from { top: -100px; opacity: 0; } to { top: 80px; opacity: 1; } }`;
@@ -394,6 +432,7 @@ function showNotification(message) {
 
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', function() {
+    
     // Load cart from localStorage
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -411,6 +450,27 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('products-grid')) {
         displayProducts();
     }
+    
+    // === NEW LOGIC: POPULATE CHECKOUT.HTML SUMMARY ===
+    const checkoutItemsContainer = document.getElementById('checkout-items');
+    if (checkoutItemsContainer && savedCart) {
+        let html = '';
+        let total = 0;
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            html += `
+                <div class="order-item">
+                    <span>${item.name} (x${item.quantity})</span>
+                    <strong>$${itemTotal.toFixed(2)}</strong>
+                </div>
+            `;
+        });
+        checkoutItemsContainer.innerHTML = html;
+        document.getElementById('checkout-total').textContent = total.toFixed(2);
+    }
+    // === END NEW LOGIC ===
+
 
     // Cart link click
     const cartLink = document.querySelector('.cart-link');
@@ -431,8 +491,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // === MOBILE MENU FIX ===
-    // This code is updated to match the .nav-open class in style.css
+    // Mobile menu fix
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     if (hamburger && navMenu) {
