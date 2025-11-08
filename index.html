@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flip Phone Resale - Premium refurbished electronics in Gilbert, Arizona. Your next tech starts here!">
+    <meta name="keywords" content="refurbished electronics, phones, laptops, tablets, Gilbert Arizona">
+    <meta property="og:title" content="Flip Phone Resale - Your Next Tech Starts Here">
+    <meta property="og:description" content="Premium refurbished electronics with 30-day returns">
+    <title>Flip Phone Resale - Premium Refurbished Electronics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="images/logo.jpg" alt="Flip Phone Resale Logo" class="logo-image">
+                <span class="logo-text">Flip Phone Resale</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#cart" class="cart-link">🛒 Cart <span id="cart-count">0</span></a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Next Tech Starts Here</h1>
+            <p>Premium Refurbished Electronics in Gilbert, Arizona</p>
+            <button class="cta-button" onclick="scrollToShop()">Shop Premium Tech</button>
+        </div>
+    </section>
+
+    <section class="trust-section">
+        <div class="trust-card">
+            <h3>✓ Quality Certified</h3>
+            <p>Every device tested and certified</p>
+        </div>
+        <div class="trust-card">
+            <h3>✓ Secure Payment</h3>
+            <p>SSL encrypted transactions</p>
+        </div>
+        <div class="trust-card">
+            <h3>✓ Fast Shipping</h3>
+            <p>Ships within 24 hours</p>
+        </div>
+        <div class="trust-card">
+            <h3>✓ 30-Day Returns</h3>
+            <p>No questions asked</p>
+        </div>
+    </section>
+
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <div class="sort-by">
+                    <label for="sort">Sort by:</label>
+                    <select id="sort" onchange="sortProducts()">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search" placeholder="Search products..." onkeyup="filterProducts()">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="shop">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="products-grid" id="products-grid"></div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Updated</h2>
+            <p>Get exclusive deals and new arrivals</p>
+            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <div id="newsletter-message" class="newsletter-message"></div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Great quality products and fast shipping! Highly recommend Flip Phone Resale."</p>
+                    <p class="customer-name">- Sarah M.</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Best prices I've found for refurbished tech. All devices work perfectly!"</p>
+                    <p class="customer-name">- John D.</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Excellent customer service and quality assurance. Will definitely buy again."</p>
+                    <p class="customer-name">- Emily R.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>FAQ & Contact</h2>
+            <div class="contact-grid">
+                <div class="faq-section">
+                    <h3>Frequently Asked Questions</h3>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            What does "refurbished" mean?
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer" style="display:none;">
+                            <p>Refurbished devices have been professionally restored to like-new condition. They're tested, cleaned, and certified to work perfectly.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            Do refurbished items come with warranty?
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer" style="display:none;">
+                            <p>Yes! All products come with our 30-day money-back guarantee and are fully tested before shipping.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            How long does shipping take?
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer" style="display:none;">
+                            <p>We ship within 24 hours of purchase. Standard shipping takes 5-7 business days.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <p><strong>📧 Email:</strong> support@flipphoneresale.com</p>
+                        <p><strong>📞 Phone:</strong> (480) 555-0123</p>
+                        <p><strong>📍 Location:</strong> Gilbert, Arizona</p>
+                        <p><strong>🕐 Hours:</strong> Mon-Fri 9AM-6PM MST</p>
+                    </div>
+                    <form class="contact-form" onsubmit="sendContactForm(event)">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="4" required></textarea>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Flip Phone Resale</h4>
+                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona. We believe in quality, affordability, and sustainability.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="Twitter">𝕏</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#shop">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Flip Phone Resale. All rights reserved. | Gilbert, Arizona</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
