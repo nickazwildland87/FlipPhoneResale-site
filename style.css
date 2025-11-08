@@ -1,6 +1,6 @@
 /* STYLE.CSS
     Updated with CSS Variables, mobile menu fix,
-    and .shop-header class.
+    .shop-header class, and all .about classes.
 */
 
 :root {
@@ -43,6 +43,13 @@ a {
 }
 a:hover {
     color: var(--color-secondary);
+}
+
+/* General container for all pages */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 /* Navbar */
@@ -112,7 +119,7 @@ a:hover {
     border-radius: 2px;
 }
 
-/* Hero Section */
+/* Hero Section (index.html) */
 .hero {
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     color: white;
@@ -146,7 +153,7 @@ a:hover {
     letter-spacing: 1px;
 }
 
-/* === NEW CLASS FOR SHOP.HTML === */
+/* Shop Page Header (shop.html) */
 .shop-header {
     background: var(--gradient-primary);
     color: var(--color-bg-white);
@@ -161,8 +168,77 @@ a:hover {
     font-size: 1.1rem;
     opacity: 0.95;
 }
-/* === END NEW CLASS === */
 
+/* About Page (about.html) */
+.about-hero {
+    background: var(--gradient-primary);
+    color: var(--color-bg-white);
+    padding: 60px 20px;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+.about-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.about-hero p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+.about-content {
+    background: var(--color-bg-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px var(--color-shadow-medium);
+    margin-bottom: 3rem;
+}
+
+.about-section {
+    margin-bottom: 2.5rem;
+}
+.about-section:last-child {
+    margin-bottom: 0;
+}
+
+.about-section h2 {
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--color-bg-offwhite);
+    padding-bottom: 0.5rem;
+}
+
+.about-section p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.value-card {
+    background: var(--color-bg-light);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px var(--color-shadow-light);
+}
+
+.value-card h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
 
 /* Trust Section */
 .trust-section {
@@ -628,4 +704,12 @@ a:hover {
     .hamburger { display: flex; }
     .footer-section { min-width: unset; }
     .hero { padding: 44px 5vw 58px 5vw; }
+    
+    /* Responsive adjustment for About page */
+    .about-content {
+        padding: 1.5rem;
+    }
+    .about-section h2 {
+        font-size: 1.5rem;
+    }
 }
