@@ -1,6 +1,5 @@
 /* STYLE.CSS
-    Updated with CSS Variables, mobile menu fix,
-    shop header, about page, sell page, and checkout page classes.
+    FINAL - Includes all fixes and classes for all pages.
 */
 
 :root {
@@ -34,6 +33,13 @@ body {
     color: var(--color-text);
     font-size: 16px;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1; /* Ensures footer sticks to bottom */
 }
 
 a {
@@ -173,7 +179,6 @@ a:hover {
     letter-spacing: 1px;
 }
 
-/* Shop Page (shop.html) uses .page-header */
 /* About Page (about.html) */
 .about-hero {
     background: var(--gradient-primary);
@@ -291,7 +296,7 @@ a:hover {
     margin-bottom: 1.5rem;
 }
 
-/* === NEW CSS FOR CHECKOUT.HTML === */
+/* Checkout Page (checkout.html) */
 .checkout-section {
     padding: 60px 0;
     background-color: var(--color-bg-light);
@@ -397,7 +402,83 @@ a:hover {
     text-decoration: none;
     font-weight: 600;
 }
-/* === END CSS FOR CHECKOUT.HTML === */
+
+/* === NEW CSS FOR RECEIPT.HTML === */
+.receipt-container {
+    max-width: 650px;
+    margin: 3rem auto 2rem auto;
+    background: var(--color-bg-white);
+    border-radius: 18px;
+    box-shadow: 0 5px 22px var(--color-shadow-light);
+    padding: 2.5rem 2rem;
+}
+.receipt-container h2 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+.receipt-container p {
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+.receipt-summary {
+    background: var(--color-bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+.receipt-summary h3 {
+    text-align: right;
+    font-size: 1.3rem;
+    color: var(--color-text);
+    margin-top: 1rem;
+}
+.receipt-summary p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+.receipt-list {
+    list-style: none;
+    padding: 0;
+}
+.receipt-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--color-border);
+}
+.receipt-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.receipt-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.receipt-actions {
+    text-align: center;
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+.receipt-btn {
+    padding: 0.8rem 1.6rem;
+    border-radius: 8px;
+    border: none;
+    background: var(--gradient-primary);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.receipt-btn:hover {
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+}
+/* === END CSS FOR RECEIPT.HTML === */
 
 
 /* Trust Section */
@@ -867,4 +948,6 @@ a:hover {
     .checkout-container { padding: 1.5rem; }
     .order-summary { padding: 1.5rem; }
     .order-summary h2 { font-size: 1.5rem; }
+    .receipt-container { padding: 1.5rem; margin-top: 1.5rem; }
+    .receipt-actions { flex-direction: column; }
 }
