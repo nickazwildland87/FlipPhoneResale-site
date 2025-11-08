@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sell Your Device - Flip Phone Resale</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="favicon.jpg">
+  <style>
+    .sell-section {
+      background: #f9f9fc;
+      padding: 60px 0;
+    }
+    .sell-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(102,126,234,0.13);
+      padding: 2.2rem 2.5rem;
+    }
+    .sell-container h1 {
+      color: #667eea;
+      text-align: center;
+      margin-bottom: 1.7rem;
+    }
+    .sell-form label {
+      font-weight: 600;
+      color: #333;
+    }
+    .sell-form input, .sell-form select, .sell-form textarea {
+      width: 100%;
+      margin-bottom: 1.4rem;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #dedede;
+      font-size: 1rem;
+    }
+    .sell-form button {
+      padding: 0.9rem 2.2rem;
+      border-radius: 8px;
+      border: none;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+    .sell-form button:hover {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+    }
+    .sell-success {
+      color: #43cea2;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+      <div class="nav-container">
+          <div class="logo-section">
+              <img src="images/logo.jpg" alt="Flip Phone Resale Logo" class="logo-image">
+              <span class="logo-text">Flip Phone Resale</span>
+          </div>
+          <ul class="nav-menu">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a href="sell.html" class="active">Sell</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="cart.html" class="cart-link">🛒 Cart <span id="cart-count">0</span></a></li>
+          </ul>
+          <div class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+      </div>
+  </nav>
+
+  <section class="sell-section">
+      <div class="sell-container">
+          <h1>Sell Your Device</h1>
+          <form class="sell-form" id="sellForm" onsubmit="processSellForm(event)">
+              <label for="device">Device Type:</label>
+              <input type="text" id="device" name="device" placeholder="E.g. iPhone 13, Galaxy S21" required>
+
+              <label for="condition">Condition:</label>
+              <select id="condition" name="condition" required>
+                  <option value="">Select</option>
+                  <option value="new">New</option>
+                  <option value="like-new">Like New</option>
+                  <option value="used">Used</option>
+                  <option value="broken">Broken</option>
+              </select>
+
+              <label for="details">Additional Details:</label>
+              <textarea id="details" name="details" rows="4"></textarea>
+
+              <label for="contact">Your Contact Info:</label>
+              <input type="text" id="contact" name="contact" placeholder="Email or phone" required>
+
+              <button type="submit">Submit for Quote</button>
+              <div id="sell-success" class="sell-success"></div>
+          </form>
+      </div>
+  </section>
+
+  <footer class="footer">
+      <div class="container">
+          <div class="footer-content">
+              <div class="footer-section">
+                  <h4>About Flip Phone Resale</h4>
+                  <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona. We believe in quality, affordability, and sustainability.</p>
+                  <div class="social-links">
+                      <a href="#" title="Facebook">f</a>
+                      <a href="#" title="Instagram">📷</a>
+                      <a href="#" title="Twitter">𝕏</a>
+                  </div>
+              </div>
+              <div class="footer-section">
+                  <h4>Quick Links</h4>
+                  <ul>
+                      <li><a href="shop.html">Shop</a></li>
+                      <li><a href="about.html">About Us</a></li>
+                      <li><a href="sell.html">Sell</a></li>
+                      <li><a href="#contact">Contact</a></li>
+                      <li><a href="#">Privacy Policy</a></li>
+                  </ul>
+              </div>
+              <div class="footer-section">
+                  <h4>Customer Service</h4>
+                  <ul>
+                      <li><a href="#">Track Order</a></li>
+                      <li><a href="#">Returns</a></li>
+                      <li><a href="#">Shipping Info</a></li>
+                      <li><a href="#">FAQ</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="footer-bottom">
+              <p>&copy; 2025 Flip Phone Resale. All rights reserved. | Gilbert, Arizona</p>
+          </div>
+      </div>
+  </footer>
+  <script>
+  function processSellForm(event) {
+      event.preventDefault();
+      const form = event.target;
+      const device = form.device.value.trim();
+      const condition = form.condition.value;
+      const contact = form.contact.value.trim();
+      if (!device || !condition || !contact) {
+          document.getElementById('sell-success').innerHTML = "<span style='color:#ff6b6b'>Please complete all required fields.</span>";
+          return;
+      }
+      document.getElementById('sell-success').textContent = "Thank you! We received your request. We'll email you within 1 business day with a competitive cash offer.";
+      form.reset();
+      setTimeout(() => {
+          document.getElementById('sell-success').textContent = "";
+      }, 7000);
+  }
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
