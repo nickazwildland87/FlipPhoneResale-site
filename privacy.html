@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Policy - Flip Phone Resale">
+    <title>Privacy Policy - Flip Phone Resale</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="images/logo.jpg" alt="Flip Phone Resale Logo" class="logo-image">
+                <span class="logo-text">Flip Phone Resale</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="sell.html">Sell</a></li>
+                <li><a href="#cart" class="cart-link">🛒 Cart <span id="cart-count">0</span></a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Privacy Policy</h1>
+        <p>Your Data is Safe With Us</p>
+    </section>
+
+    <main class="container">
+        <div class="static-content-box">
+            
+            <div class="static-section">
+                <h2>Our Commitment to Privacy</h2>
+                <p>
+                    Flip Phone Resale ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, flipphoneresaleaz.com.
+                </p>
+            </div>
+            
+            <div class="static-section">
+                <h2>Information We Collect</h2>
+                <p>
+                    We may collect personal information from you in a variety of ways, including:
+                </p>
+                <ul>
+                    <li><strong>Personal Data:</strong> Personally identifiable information, such as your name, shipping address, email address, and telephone number, that you voluntarily give to us when you purchase a product or submit a "sell" request.</li>
+                    <li><strong>Order Information:</strong> Information related to your purchases, such as the items you bought and your billing address. We do not store or process your credit card information; this is handled by our secure payment processor.</li>
+                    <li><strong>Derivative Data:</strong> Information our servers automatically collect, such as your IP address and browser type, when you access the site.</li>
+                </ul>
+            </div>
+
+            <div class="static-section">
+                <h2>How We Use Your Information</h2>
+                <p>
+                    Having accurate information permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you to:
+                </p>
+                <ul>
+                    <li>Process your orders and manage your account.</li>
+                    <li>Email you regarding your order, shipping, or return.</li>
+                    <li>Respond to your "sell" quote requests and customer service inquiries.</li>
+                    <li>Prevent fraudulent transactions and monitor for theft.</li>
+                </ul>
+            </div>
+            
+            <div class="static-section">
+                <h2>Security of Your Information</h2>
+                <p>
+                    We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Flip Phone Resale</h4>
+                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="index.html#contact">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Flip Phone Resale. All rights reserved. | Gilbert, Arizona</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
