@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Terms of Service - Flip Phone Resale">
+    <title>Terms of Service - Flip Phone Resale</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="images/logo.jpg" alt="Flip Phone Resale Logo" class="logo-image">
+                <span class="logo-text">Flip Phone Resale</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="sell.html">Sell</a></li>
+                <li><a href="#cart" class="cart-link">🛒 Cart <span id="cart-count">0</span></a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Terms of Service</h1>
+        <p>Please Read Before Using Our Site</p>
+    </section>
+
+    <main class="container">
+        <div class="static-content-box">
+            
+            <div class="static-section">
+                <h2>1. Agreement to Terms</h2>
+                <p>
+                    By accessing or using flipphoneresaleaz.com (the "Site"), you agree to be bound by these Terms of Service. If you do not agree to all of these terms, do not use this Site.
+                </p>
+            </div>
+            
+            <div class="static-section">
+                <h2>2. Purchases and Payment</h2>
+                <p>
+                    By providing a payment method to us, you represent that you are authorized to use the payment method and that you authorize us (or our third-party payment processor) to charge your payment method for the total amount of your purchase.
+                </p>
+            </div>
+
+            <div class="static-section">
+                <h2>3. Product and "Sell" Submissions</h2>
+                <p>
+                    All product descriptions are as accurate as possible. However, we do not warrant that product descriptions are error-free. All "sell" submissions are quotes and are not a binding agreement to purchase until the device has been received and inspected by our team. We reserve the right to adjust any quote based on the actual condition of the device.
+                </p>
+            </div>
+            
+            <div class="static-section">
+                <h2>4. Limitation of Liability</h2>
+                <p>
+                    In no event shall Flip Phone Resale or its staff be liable for any indirect, incidental, or consequential damages arising out of your use of the Site or products purchased from the Site.
+                </D>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Flip Phone Resale</h4>
+                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="index.html#contact">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Flip Phone Resale. All rights reserved. | Gilbert, Arizona</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
