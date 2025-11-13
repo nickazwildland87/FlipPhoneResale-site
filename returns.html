@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Returns Policy - Flip Phone Resale">
+    <title>Returns Policy - Flip Phone Resale</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="images/logo.jpg" alt="Flip Phone Resale Logo" class="logo-image">
+                <span class="logo-text">Flip Phone Resale</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="sell.html">Sell</a></li>
+                <li><a href="#cart" class="cart-link">🛒 Cart <span id="cart-count">0</span></a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Returns & Warranty</h1>
+        <p>Our 30-Day Money-Back Guarantee</p>
+    </section>
+
+    <main class="container">
+        <div class="static-content-box">
+            
+            <div class="static-section">
+                <h2>Our 30-Day Guarantee</h2>
+                <p>
+                    We stand behind every product we sell. At Flip Phone Resale, we are proud to offer a 30-day money-back guarantee on all purchased devices. If you are not 100% satisfied with your purchase for any reason, you can return it for a full refund.
+                </p>
+                <p>
+                    This policy applies to all refurbished electronics, no questions asked.
+                </p>
+            </div>
+            
+            <div class="static-section">
+                <h2>How to Start a Return</h2>
+                <p>
+                    Starting a return is simple. Please follow these steps:
+                </p>
+                <ol>
+                    <li>
+                        <strong>Contact Us:</strong> Email our support team at <strong>support@flipphoneresale.com</strong> with your original order ID and the reason for your return.
+                    </li>
+                    <li>
+                        <strong>Get Your RMA:</strong> We will provide you with a Return Merchandise Authorization (RMA) number and a pre-paid return shipping label.
+                    </li>
+                    <li>
+                        <strong>Ship Your Device:</strong> Securely package the device and all original accessories. Attach the shipping label and drop it off with the designated carrier.
+                    </li>
+                    <li>
+                        <strong>Receive Your Refund:</strong> Once we receive and inspect the item (within 2-3 business days), we will process your full refund to your original payment method.
+                    </li>
+                </ol>
+            </div>
+
+            <div class="static-section">
+                <h2>Conditions</h2>
+                <ul>
+                    <li>Returns must be initiated within 30 days of the original delivery date.</li>
+                    <li>The device must be returned in the same condition it was received, with all original accessories (chargers, cables, etc.).</li>
+                    <li>The device must not have any new user-inflicted damage, such as cracks, water damage, or significant scratches.</li>
+                    <li>All personal accounts (like iCloud or Google) must be signed out and the device reset. We cannot process refunds for locked devices.</li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Flip Phone Resale</h4>
+                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="index.html#contact">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Flip Phone Resale. All rights reserved. | Gilbert, Arizona</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
