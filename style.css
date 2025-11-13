@@ -129,7 +129,7 @@ a:hover {
     border-radius: 2px;
 }
 
-/* === GENERAL PAGE HEADER (for shop, about, checkout) === */
+/* === GENERAL PAGE HEADER (for shop, about, checkout, returns) === */
 .page-header {
     background: var(--gradient-primary);
     color: var(--color-bg-white);
@@ -173,6 +173,7 @@ a:hover {
     cursor: pointer;
     box-shadow: 0 4px 16px rgba(67, 206, 162, 0.14);
     transition: all .18s;
+    display: inline-block; /* Added for <a> tag to behave like button */
 }
 .cta-button:hover {
     background: linear-gradient(135deg, var(--color-accent-dark), var(--color-accent));
@@ -200,7 +201,7 @@ a:hover {
     padding: 2.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 18px var(--color-shadow-medium);
-    margin-bottom: 3rem;
+    margin: 2.5rem 0 3rem 0; /* Added margin for container */
 }
 .about-section {
     margin-bottom: 2.5rem;
@@ -241,6 +242,39 @@ a:hover {
     color: var(--color-secondary);
     margin-bottom: 0.5rem;
 }
+
+/* === NEW CSS FOR STATIC PAGES (Returns) === */
+.static-content-box {
+    background: var(--color-bg-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px var(--color-shadow-medium);
+    margin: 2.5rem 0;
+}
+.static-section {
+    margin-bottom: 2.5rem;
+}
+.static-section:last-child {
+    margin-bottom: 0;
+}
+.static-section h2 {
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--color-bg-offwhite);
+    padding-bottom: 0.5rem;
+}
+.static-section p, 
+.static-section li {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+.static-content-box ol,
+.static-content-box ul {
+    padding-left: 2rem;
+}
+/* === END NEW CSS === */
+
 
 /* Sell Page (sell.html) */
 .sell-section {
@@ -309,6 +343,7 @@ a:hover {
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 2.5rem auto; /* Added margin for container */
 }
 .order-summary {
     background: var(--color-bg-light);
@@ -403,7 +438,7 @@ a:hover {
     font-weight: 600;
 }
 
-/* === NEW CSS FOR RECEIPT.HTML === */
+/* Receipt Page (receipt.html) */
 .receipt-container {
     max-width: 650px;
     margin: 3rem auto 2rem auto;
@@ -478,7 +513,6 @@ a:hover {
 .receipt-btn:hover {
     background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
 }
-/* === END CSS FOR RECEIPT.HTML === */
 
 
 /* Trust Section */
@@ -706,9 +740,6 @@ a:hover {
     gap: 48px;
     align-items: flex-start;
     margin-top: 36px;
-}
-@media (max-width: 900px) {
-    .contact-grid { grid-template-columns: 1fr;}
 }
 .faq-section h3, .contact-info h3 {
     color: var(--color-primary);
@@ -944,6 +975,8 @@ a:hover {
     .hero { padding: 44px 5vw 58px 5vw; }
     .about-content { padding: 1.5rem; }
     .about-section h2 { font-size: 1.5rem; }
+    .static-content-box { padding: 1.5rem; } /* Added for mobile */
+    .static-section h2 { font-size: 1.5rem; } /* Added for mobile */
     .sell-container { padding: 1.5rem; }
     .checkout-container { padding: 1.5rem; }
     .order-summary { padding: 1.5rem; }
