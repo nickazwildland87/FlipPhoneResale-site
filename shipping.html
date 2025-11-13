@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shipping Information - Flip Phone Resale">
+    <title>Shipping Information - Flip Phone Resale</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="images/logo.jpg" alt="Flip Phone Resale Logo" class="logo-image">
+                <span class="logo-text">Flip Phone Resale</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="sell.html">Sell</a></li>
+                <li><a href="#cart" class="cart-link">🛒 Cart <span id="cart-count">0</span></a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Shipping Information</h1>
+        <p>How We Get Your Tech to You</p>
+    </section>
+
+    <main class="container">
+        <div class="static-content-box">
+            
+            <div class="static-section">
+                <h2>Order Processing Time</h2>
+                <p>
+                    All orders are processed and shipped within **one (1) business day** (Monday - Friday) of your purchase. Orders placed on weekends or holidays will be shipped on the next business day.
+                </p>
+            </div>
+            
+            <div class="static-section">
+                <h2>Shipping Methods & Costs</h2>
+                <p>
+                    We offer the following shipping options for all domestic orders within the United States:
+                </p>
+                <ul>
+                    <li><strong>Standard Shipping (5-7 Business Days):</strong> $4.99</li>
+                    <li><strong>Expedited Shipping (2-3 Business Days):</strong> $12.99</li>
+                    <li><strong>Free Shipping:</strong> All orders over $100 automatically qualify for free Standard Shipping.</li>
+                </ul>
+            </div>
+
+            <div class="static-section">
+                <h2>Shipment Tracking</h2>
+                <p>
+                    Once your order has shipped, you will receive an email confirmation containing your tracking number. You can use this number to track your package via the carrier's website.
+                </p>
+            </div>
+            
+            <div class="static-section">
+                <h2>International Shipping</h2>
+                <p>
+                    At this time, we only ship to addresses within the United States. We do not offer international shipping.
+                </D>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Flip Phone Resale</h4>
+                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="index.html#contact">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Flip Phone Resale. All rights reserved. | Gilbert, Arizona</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
