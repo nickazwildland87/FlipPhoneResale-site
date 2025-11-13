@@ -1,11 +1,13 @@
-// ==================== PRODUCT DATA ============
-let products = [];
+ // ==================== PRODUCT DATA ====================
+let products = []; // We fetch this from the server now
 
 // ==================== CART MANAGEMENT ====================
 let cart = [];
 
 function addToCart(productId) {
+    // Find the product in our global 'products' array
     const product = products.find(p => p.id === productId);
+    
     if (product) {
         const existingItem = cart.find(item => item.id === productId);
         if (existingItem) {
@@ -15,6 +17,34 @@ function addToCart(productId) {
         }
         updateCartCount();
         showNotification(`${product.name} added to cart!`);
+    } else {
+        // This handles a case where the products array hasn't loaded yet
+        // We'll fetch the single product to add it
+        fetchAndAddToCart(productId);
+    }
+}
+
+// A helper function in case 'products' isn't loaded yet
+async function fetchAndAddToCart(productId) {
+    try {
+        const renderBackendURL = `https://flipphoneresale-backend.onrender.com/api/products/${productId}`;
+        const response = await fetch(renderBackendURL);
+        if (!response.ok) throw new Error("Product not found");
+        
+        const product = await response.json();
+        
+        const existingItem = cart.find(item => item.id === productId);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        updateCartCount();
+        showNotification(`${product.name} added to cart!`);
+        
+    } catch (error) {
+        console.error("Failed to fetch product for cart:", error);
+        showNotification("Error: Could not add item to cart.");
     }
 }
 
@@ -132,56 +162,87 @@ function clearReceipt() {
 }
 
 
-// ==================== PRODUCT DISPLAY ====================
-function displayProducts(productsToDisplay = products) {
+// ==================== PRODUCT DISPLAY (SHOP PAGE) ====================
+// ★ THIS FUNCTION IS NOW UPDATED WITH LINKS ★
+function displayProducts() {
     const grid = document.getElementById('products-grid');
-    if (!grid) return; 
-    if (productsToDisplay.length === 0) {
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999; padding: 2rem;">No products found</p>';
+    if (!grid) return; // Exit if we're not on a page with a product grid
+    
+    // Check if products are loaded
+    if (products.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999; padding: 2rem;">Loading products...</p>';
         return;
     }
-    grid.innerHTML = productsToDisplay.map(product => `
-        <div class="product-card">
-            <div class="product-image">
-                <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/280x250?text=${encodeURIComponent(product.name)}'">
-                <span class="badge">${product.badge}</span>
+
+    grid.innerHTML = products.map(product => `
+        <a href="product.html?id=${product.id}" class="product-card-link">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/280x250?text=${encodeURIComponent(product.name)}'">
+                    <span class="badge">${product.badge}</span>
+                </div>
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p class="condition">Condition: ${product.condition}</p>
+                    <p class="price">$${product.price.toFixed(2)}</p>
+                    <p class="rating">${product.rating}</p>
+                    ${product.specs ? `<p style="font-size: 0.85rem; color: #667eea; margin-bottom: 0.5rem;"><strong>Specs:</strong> ${product.specs}</p>` : ''}
+                    
+                    <button class_name="add-to-cart" onclick="event.preventDefault(); addToCart(${product.id});">Add to Cart</button>
+                </div>
             </div>
-            <div class="product-info">
-                <h3>${product.name}</h3>
-                <p class="condition">Condition: ${product.condition}</p>
-                <p class="price">$${product.price.toFixed(2)}</p>
-                <p class="rating">${product.rating}</p>
-                ${product.specs ? `<p style="font-size: 0.85rem; color: #667eea; margin-bottom: 0.5rem;"><strong>Specs:</strong> ${product.specs}</p>` : ''}
-                <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
-            </div>
-        </div>
+        </a>
     `).join('');
 }
 
 // ==================== SEARCH & FILTER ====================
 function filterProducts() {
     const searchTerm = document.getElementById('search').value.toLowerCase();
+    
+    // Filter from the master 'products' list
     const filtered = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm) ||
         product.condition.toLowerCase().includes(searchTerm) ||
         (product.category && product.category.toLowerCase().includes(searchTerm))
     );
-    displayProducts(filtered);
+    
+    // We can't use displayProducts() here as it has no arguments
+    // So we'll update the grid directly
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
+    if (filtered.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999; padding: 2rem;">No products found</p>';
+        return;
+    }
+
+    // Re-render the grid with just the filtered items
+    grid.innerHTML = filtered.map(product => `
+        <a href="product.html?id=${product.id}" class="product-card-link">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/280x250?text=${encodeURIComponent(product.name)}'">
+                    <span class="badge">${product.badge}</span>
+                </div>
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p class="condition">Condition: ${product.condition}</p>
+                    <p class="price">$${product.price.toFixed(2)}</p>
+                    <p class="rating">${product.rating}</p>
+                    ${product.specs ? `<p style="font-size: 0.85rem; color: #667eea; margin-bottom: 0.5rem;"><strong>Specs:</strong> ${product.specs}</p>` : ''}
+                    <button class_name="add-to-cart" onclick="event.preventDefault(); addToCart(${product.id});">Add to Cart</button>
+                </div>
+            </div>
+        </a>
+    `).join('');
 }
 
 function sortProducts() {
     const sortValue = document.getElementById('sort').value;
+    
+    // Create a new array to sort, based on the master 'products' list
     let sorted = [...products]; 
     
-    const searchTerm = document.getElementById('search').value.toLowerCase();
-    if(searchTerm) {
-        sorted = products.filter(product =>
-            product.name.toLowerCase().includes(searchTerm) ||
-            product.condition.toLowerCase().includes(searchTerm) ||
-            (product.category && product.category.toLowerCase().includes(searchTerm))
-        );
-    }
-
     switch (sortValue) {
         case 'price-low':
             sorted.sort((a, b) => a.price - b.price);
@@ -194,9 +255,33 @@ function sortProducts() {
             break;
         case 'featured':
         default:
+             // Do nothing, keep the default order
              break;
     }
-    displayProducts(sorted);
+    
+    // Now we update the grid with the sorted list
+    // This is a bit of duplicate code, but it's the simplest way
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
+    grid.innerHTML = sorted.map(product => `
+        <a href="product.html?id=${product.id}" class="product-card-link">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/280x250?text=${encodeURIComponent(product.name)}'">
+                    <span class="badge">${product.badge}</span>
+                </div>
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p class="condition">Condition: ${product.condition}</p>
+                    <p class="price">$${product.price.toFixed(2)}</p>
+                    <p class="rating">${product.rating}</p>
+                    ${product.specs ? `<p style="font-size: 0.85rem; color: #667eea; margin-bottom: 0.5rem;"><strong>Specs:</strong> ${product.specs}</p>` : ''}
+                    <button class_name="add-to-cart" onclick="event.preventDefault(); addToCart(${product.id});">Add to Cart</button>
+                </div>
+            </div>
+        </a>
+    `).join('');
 }
 
 // ==================== NEWSLETTER ====================
@@ -304,78 +389,187 @@ function showNotification(message) {
         styleSheet.remove();
     }, 3000);
 }
-// ==================== INITIALIZATION ====================
+
+
+// ==================== ★ NEW PRODUCT DETAIL PAGE LOGIC ★ ====================
+
+async function loadProductDetails() {
+    const container = document.getElementById('product-detail-container');
+    if (!container) {
+        return; // We are not on product.html, do nothing
+    }
+
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        
+        if (!productId) {
+            throw new Error("No product ID found in URL.");
+        }
+
+        const renderBackendURL = `https://flipphoneresale-backend.onrender.com/api/products/${productId}`;
+
+        const response = await fetch(renderBackendURL);
+        if (!response.ok) {
+            throw new Error(`Product not found (status: ${response.status})`);
+        }
+        const product = await response.json();
+
+        // Populate the container with the product data
+        container.innerHTML = `
+            <div class="product-detail-image">
+                <img src="${product.image}" alt="${product.name}">
+            </div>
+            <div class="product-detail-info">
+                <span class="badge">${product.badge}</span>
+                <h1>${product.name}</h1>
+                <p class="rating">${product.rating}</p>
+                <p class="condition">Condition: ${product.condition}</p>
+                <p class="price">$${product.price.toFixed(2)}</p>
+                
+                ${product.specs ? `
+                    <h3 class="specs-title">Specifications</h3>
+                    <p class="specs-text">${product.specs}</p>
+                ` : ''}
+
+                <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+            </div>
+        `;
+
+    } catch (error) {
+        console.error("Failed to load product details:", error);
+        container.innerHTML = '<p style="text-align: center; color: #ff6b6b; padding: 4rem 0;">Error: Could not load product. It may no longer exist.</p>';
+    }
+}
+
+// Call the new function right away on page load
+loadProductDetails();
+
+
+// ==================== ★ UPDATED INITIALIZATION ★ ====================
 document.addEventListener('DOMContentLoaded', async function() { // <-- Made async
     
-        // === NEW LOGIC: FETCH PRODUCTS ON PAGE LOAD ===
-            try {
-                    // This is the public URL of your backend server
-                            const renderBackendURL = https://flipphone-backend.onrender.com
-                                    
-                                            const response = await fetch(renderBackendURL);
-                                                    if (!response.ok) {
-                                                                throw new Error(`Network response was not ok (status: ${response.status})`);
-                                                                        }
-                                                                                
-                                                                                        // Fill our (now empty) global 'products' array with data from the server
-                                                                                                products = await response.json();
-                                                                                                        
-                                                                                                                // Now that 'products' is full, we can run the original display function
-                                                                                                                        if (document.getElementById('products-grid')) {
-                                                                                                                                    displayProducts(); 
-                                                                                                                                            }
-                                                                                                                                                    
-                                                                                                                                                        } catch (error) {
-                                                                                                                                                                console.error("Failed to fetch products:", error);
-                                                                                                                                                                        // If the backend fails, show an error on the page
-                                                                                                                                                                                const grid = document.getElementById('products-grid');
-                                                                                                                                                                                        if (grid) {
-                                                                                                                                                                                                    grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #ff6b6b; padding: 2rem;">Error: Could not load products from the server. Please try again later.</p>';
-                                                                                                                                                                                                            }
-                                                                                                                                                                                                                }
-                                                                                                                                                                                                                    // === END NEW LOGIC ===
+    // === NEW LOGIC: FETCH PRODUCTS ON PAGE LOAD ===
+    try {
+        const renderBackendURL = "https://flipphoneresale-backend.onrender.com/api/products";
+        
+        const response = await fetch(renderBackendURL);
+        if (!response.ok) {
+            throw new Error(`Network response was not ok (status: ${response.status})`);
+        }
+        
+        products = await response.json(); // Fill our global 'products' array
+        
+        // Now that 'products' is full, we can run the display function
+        if (document.getElementById('products-grid')) {
+            displayProducts(); 
+        }
+        
+    } catch (error) {
+        console.error("Failed to fetch products:", error);
+        const grid = document.getElementById('products-grid');
+        if (grid) {
+            grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #ff6b6b; padding: 2rem;">Error: Could not load products from the server. Please try again later.</p>';
+        }
+    }
+    // === END NEW LOGIC ===
 
 
-                                                                                                                                                                                                                        // --- All your original, good code below ---
+    // --- All your original, good code below ---
 
-                                                                                                                                                                                                                            // Load cart from localStorage
-                                                                                                                                                                                                                                const savedCart = localStorage.getItem('cart');
-                                                                                                                                                                                                                                    if (savedCart) {
-                                                                                                                                                                                                                                            try {
-                                                                                                                                                                                                                                                        cart = JSON.parse(savedCart);
-                                                                                                                                                                                                                                                                } catch (e) {
-                                                                                                                                                                                                                                                                            console.error('Cart data corrupted, starting fresh');
-                                                                                                                                                                                                                                                                                        cart = [];
-                                                                                                                                                                                                                                                                                                    localStorage.removeItem('cart');
-                                                                                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                    updateCartCount(); // Update count on every page load
+    // Load cart from localStorage
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        try {
+            cart = JSON.parse(savedCart);
+        } catch (e) {
+            console.error('Cart data corrupted, starting fresh');
+            cart = [];
+            localStorage.removeItem('cart');
+        }
+    }
+    updateCartCount(); // Update count on every page load
 
-                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                            // POPULATE CHECKOUT.HTML SUMMARY
-                                                                                                                                                                                                                                                                                                                                const checkoutItemsContainer = document.getElementById('checkout-items');
-                                                                                                                                                                                                                                                                                                                                    if (checkoutItemsContainer && savedCart) {
-                                                                                                                                                                                                                                                                                                                                            let html = '';
-                                                                                                                                                                                                                                                                                                                                                    let total = 0;
-                                                                                                                                                                                                                                                                                                                                                            cart.forEach(item => {
-                                                                                                                                                                                                                                                                                                                                                                        const itemTotal = item.price * item.quantity;
-                                                                                                                                                                                                                                                                                                                                                                                    total += itemTotal;
-                                                                                                                                                                                                                                                                                                                                                                                                html += `
-                                                                                                                                                                                                                                                                                                                                                                                                                <div class="order-item">
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>${item.name} (x${item.quantity})</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        <strong>$${itemTotal.toFixed(2)}</strong>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    `;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    checkoutItemsContainer.innerHTML = html;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            document.getElementById('checkout-total').textContent = total.toFixed(2);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // POPULATE RECEIPT.HTML
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            const receiptSummary = document.getElementById('receipt-summary');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                if (receiptSummary) {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        const orderData = JSON.parse(localStorage.getItem('finalOrder'));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                if (orderData) {
+    
+    // POPULATE CHECKOUT.HTML SUMMARY
+    const checkoutItemsContainer = document.getElementById('checkout-items');
+    if (checkoutItemsContainer && savedCart) {
+        let html = '';
+        let total = 0;
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            html += `
+                <div class="order-item">
+                    <span>${item.name} (x${item.quantity})</span>
+                    <strong>$${itemTotal.toFixed(2)}</strong>
+                </div>
+            `;
+        });
+        checkoutItemsContainer.innerHTML = html;
+        document.getElementById('checkout-total').textContent = total.toFixed(2);
+    }
+    
+    // POPULATE RECEIPT.HTML
+    const receiptSummary = document.getElementById('receipt-summary');
+    if (receiptSummary) {
+        const orderData = JSON.parse(localStorage.getItem('finalOrder'));
+        if (orderData) {
+            let itemsHtml = '<ul class="receipt-list">';
+            orderData.cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                itemsHtml += `
+                    <li class="receipt-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <span>${item.name} (x${item.quantity}) - <strong>$${subtotal.toFixed(2)}</strong></span>
+                    </li>
+                `;
+            });
+            itemsHtml += '</ul>';
+            
+            receiptSummary.innerHTML = `
+                <p>
+                    <strong>Order ID:</strong> ${orderData.orderId}<br>
+                    <strong>Name:</strong> ${orderData.customerName}<br>
+                    <strong>Email:</strong> ${orderData.customerEmail}
+                </p>
+                ${itemsHtml}
+                <h3>Total Paid: $${orderData.total}</h3>
+            `;
+        } else {
+            receiptSummary.innerHTML = "<p>No order details found. Please return to the shop.</p>";
+        }
+    }
+
+
+    // Cart link click
+    const cartLink = document.querySelector('.cart-link');
+    if (cartLink) {
+        cartLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            openCart();
+        });
+    }
+
+    // Close modal when clicking outside
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeCart();
+            }
+        });
+    }
+
+    // Mobile menu fix
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('nav-open');
+        });
+    }
+});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               if (orderData) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             let itemsHtml = '<ul class="receipt-list">';
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         orderData.cart.forEach(item => {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         const subtotal = item.price * item.quantity;
