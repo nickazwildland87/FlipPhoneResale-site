@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shop Flip Phone Resale - Premium refurbished electronics">
-    <title>Shop - Flip Phone Resale</title>
+    <meta name="description" content="About Flip Phone Resale - Your trusted source for premium refurbished electronics in Gilbert, Arizona">
+    <title>About Us - Flip Phone Resale</title>
     
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -20,7 +20,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="sell.html">Sell</a></li>
                 <li><a href="#cart" class="cart-link">🛒 Cart <span id="cart-count">0</span></a></li>
             </ul>
             <div class="hamburger">
@@ -31,56 +31,97 @@
         </div>
     </nav>
 
-    <section class="page-header">
-        <h1>Our Complete Product Catalog</h1>
-        <p>Premium Refurbished Electronics - Quality You Can Trust</p>
-    </section>
+    <div class="about-hero">
+        <h1>About Flip Phone Resale</h1>
+        <p>Your Trusted Source for Premium Refurbished Electronics</p>
+    </div>
 
-    <section class="filter-section">
-        <div class="container">
-            <div class="filter-controls">
-                <div class="sort-by">
-                    <label for="sort">Sort by:</label>
-                    <select id="sort" onchange="sortProducts()">
-                        <option value="featured">Featured</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="newest">Newest</option>
-                    </select>
-                </div>
-                <div class="search-box">
-                    <input type="text" id="search" placeholder="Search products..." onkeyup="filterProducts()">
+    <main class="container">
+        <div class="about-content">
+            <div class="about-section">
+                <h2>Who We Are</h2>
+                <p>
+                    Flip Phone Resale is a premier electronics reseller based in Gilbert, Arizona. Since our founding, we've been dedicated to providing high-quality, affordable refurbished devices to customers who want top technology without the premium price tag.
+                </p>
+                <p>
+                    Our mission is simple: make premium electronics accessible to everyone. We believe that refurbished technology is the future of sustainable consumption, and we're proud to be at the forefront of this movement.
+                </p>
+            </div>
+            <div class="about-section">
+                <h2>Our Commitment</h2>
+                <p>
+                    Every device that leaves our facility has undergone rigorous testing and quality assurance. We stand behind every product with our 30-day money-back guarantee and provide full transparency about the condition and history of each item.
+                </p>
+                <p>
+                    Quality is not just a promise—it's our guarantee. Whether you're buying a smartphone, laptop, tablet, or audio device, you can trust that you're getting a product that meets our strict standards.
+                </p>
+            </div>
+            <div class="about-section">
+                <h2>Our Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <h3>Quality First</h3>
+                        <p>Every device is tested and certified before shipping</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Fair Pricing</h3>
+                        <p>Get premium tech at refurbished prices</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Sustainability</h3>
+                        <p>Reduce e-waste while saving money</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Customer Service</h3>
+                        <p>We're here to help every step of the way</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Transparency</h3>
+                        <p>Full disclosure on product condition and specs</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Fast Shipping</h3>
+                        <p>Ships within 24 hours, arrives in 5-7 days</p>
+                    </div>
                 </div>
             </div>
+            <div class="about-section">
+                <h2>Why Choose Refurbished?</h2>
+                <p>
+                    <strong>Save Money:</strong> Get the same technology at 30-50% less than retail prices.
+                </p>
+                <p>
+                    <strong>Environmentally Responsible:</strong> Reduce electronic waste and give devices a second life.
+                </p>
+                <p>
+                    <strong>Quality Assurance:</strong> Our devices are professionally restored and thoroughly tested.
+                </p>
+                <p>
+                    <strong>Full Warranty:</strong> 30-day money-back guarantee on all purchases.
+                </p>
+            </div>
+            <div class="about-section">
+                <h2>Contact Us</h2>
+                <p>
+                    Have questions about our products or service? We'd love to hear from you!
+                </p>
+                <p>
+                    <strong>📧 Email:</strong> support@flipphoneresale.com<br>
+                    <strong>📞 Phone:</strong> (480) 382-6597<br>
+                    <strong>📍 Location:</strong> Gilbert, Arizona<br>
+                    <strong>🕐 Hours:</strong> Monday - Friday, 9AM - 6PM MST
+                </p>
+            </div>
         </div>
-    </section>
+    </main>
 
-    <section class="shop">
-        <div class="container">
-            <h2>Featured Products</h2>
-            <div class="products-grid" id="products-grid">
-                </div>
-        </div>
-    </section>
-
-    <section class="newsletter">
-        <div class="container">
-            <h2>Stay Updated</h2>
-            <p>Get exclusive deals and new arrivals</p>
-            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
-                <input type="email" id="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
-            <div id="newsletter-message" class="newsletter-message"></div>
-        </div>
-    </section>
 
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>About Flip Phone Resale</h4>
-                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona. We believe in quality, affordability, and sustainability.</p>
+                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona.</p>
                     <div class="social-links">
                         <a href="#" title="Facebook">f</a>
                         <a href="#" title="Instagram">📷</a>
@@ -90,10 +131,11 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
                         <li><a href="shop.html">Shop</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="sell.html">Sell</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -122,7 +164,7 @@
             <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
         </div>
     </div>
-
+    
     <script src="app.js"></script>
 </body>
 </html>
