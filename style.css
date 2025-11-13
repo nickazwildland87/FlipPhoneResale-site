@@ -243,7 +243,7 @@ a:hover {
     margin-bottom: 0.5rem;
 }
 
-/* === NEW CSS FOR STATIC PAGES (Returns) === */
+/* Static Pages (Returns) */
 .static-content-box {
     background: var(--color-bg-white);
     padding: 2.5rem;
@@ -273,8 +273,6 @@ a:hover {
 .static-content-box ul {
     padding-left: 2rem;
 }
-/* === END NEW CSS === */
-
 
 /* Sell Page (sell.html) */
 .sell-section {
@@ -573,6 +571,14 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
     margin: 2rem 0;
 }
+
+/* ★ NEW STYLE FOR PRODUCT LINK ★ */
+.product-card-link {
+    text-decoration: none; /* Removes underline from link */
+    color: inherit; /* Makes link inherit text color */
+    display: block; /* Makes the whole link area tappable */
+}
+
 .product-card {
     background: var(--color-bg-white);
     border-radius: 14px;
@@ -581,6 +587,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     transition: box-shadow .2s, transform .2s;
+    height: 100%; /* Ensures all cards in a row are same height */
 }
 .product-card:hover {
     box-shadow: 0 8px 32px 4px rgba(67, 206, 162, 0.13);
@@ -656,6 +663,69 @@ a:hover {
 .add-to-cart:hover {
     background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
     box-shadow: 0 5px 20px 0 rgba(118,75,162,.08);
+}
+
+/* Product Detail Page */
+.product-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2.5rem;
+    background: var(--color-bg-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px var(--color-shadow-medium);
+    margin: 2.5rem 0;
+}
+.product-detail-image {
+    background: var(--color-bg-light);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+}
+.product-detail-image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 400px;
+}
+.product-detail-info h1 {
+    font-size: 2.2rem;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+.product-detail-info .badge {
+    position: static; /* Override the absolute positioning from the card */
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.product-detail-info .price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin: 0.5rem 0;
+}
+.product-detail-info .condition,
+.product-detail-info .rating {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+.product-detail-info .specs-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-top: 1.5rem;
+}
+.product-detail-info .specs-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.product-detail-info .add-to-cart {
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+    width: 100%;
 }
 
 /* Newsletter */
@@ -939,6 +1009,7 @@ a:hover {
     .footer-content { flex-direction: column; gap: 28px; }
     .nav-menu { gap: 1.1rem; }
     .contact-grid { grid-template-columns: 1fr;}
+    .product-detail-container { grid-template-columns: 1fr; } /* Stack on mobile */
 }
 @media (max-width: 700px) {
     .nav-container { padding: 1rem 5vw; }
@@ -975,12 +1046,14 @@ a:hover {
     .hero { padding: 44px 5vw 58px 5vw; }
     .about-content { padding: 1.5rem; }
     .about-section h2 { font-size: 1.5rem; }
-    .static-content-box { padding: 1.5rem; } /* Added for mobile */
-    .static-section h2 { font-size: 1.5rem; } /* Added for mobile */
+    .static-content-box { padding: 1.5rem; }
+    .static-section h2 { font-size: 1.5rem; }
     .sell-container { padding: 1.5rem; }
     .checkout-container { padding: 1.5rem; }
     .order-summary { padding: 1.5rem; }
     .order-summary h2 { font-size: 1.5rem; }
     .receipt-container { padding: 1.5rem; margin-top: 1.5rem; }
     .receipt-actions { flex-direction: column; }
+    .product-detail-container { padding: 1.5rem; } /* Mobile padding */
+    .product-detail-info h1 { font-size: 1.8rem; } /* Mobile heading */
 }
