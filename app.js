@@ -27,7 +27,8 @@ function addToCart(productId) {
 // A helper function in case 'products' isn't loaded yet
 async function fetchAndAddToCart(productId) {
     try {
-        const renderBackendURL = `https://flipphoneresale-backend.onrender.com/api/products/${productId}`;
+        // ★ THE URL IS NOW CORRECT ★
+        const renderBackendURL = `https://flipphone-backend.onrender.com/api/products/${productId}`;
         const response = await fetch(renderBackendURL);
         if (!response.ok) throw new Error("Product not found");
         
@@ -177,13 +178,13 @@ function displayProducts() {
         <a href="product.html?id=${product.id}" class="product-card-link">
             <div class="product-card">
                 <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/280x250?text=${encodeURIComponent(product.name)}'">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https*://via.placeholder.com/280x250?text=${encodeURIComponent(product.name)}'">
                     <span class="badge">${product.badge}</span>
                 </div>
                 <div class="product-info">
                     <h3>${product.name}</h3>
                     <p class="condition">Condition: ${product.condition}</p>
-                    <p class="price">$${product.price.toFixed(2)}</p>
+                    <p classD="price">$${product.price.toFixed(2)}</p>
                     <p class="rating">${product.rating}</p>
                     ${product.specs ? `<p style="font-size: 0.85rem; color: #667eea; margin-bottom: 0.5rem;"><strong>Specs:</strong> ${product.specs}</p>` : ''}
                     
@@ -220,7 +221,7 @@ function filterProducts() {
         <a href="product.html?id=${product.id}" class="product-card-link">
             <div class="product-card">
                 <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/280x250?text=${encodeURIComponent(product.name)}'">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https*://via.placeholder.com/280x250?text=${encodeURIComponent(product.name)}'">
                     <span class="badge">${product.badge}</span>
                 </div>
                 <div class="product-info">
@@ -266,7 +267,7 @@ function sortProducts() {
         <a href="product.html?id=${product.id}" class="product-card-link">
             <div class="product-card">
                 <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" onerror="this.src='httpsIS_NOT_SUPPORTED" />
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https*://via.placeholder.com/280x250?text=${encodeURIComponent(product.name)}'">
                     <span class="badge">${product.badge}</span>
                 </div>
                 <div class="product-info">
@@ -405,7 +406,8 @@ async function loadProductDetails() {
             throw new Error("No product ID found in URL.");
         }
 
-        const renderBackendURL = `https://flipphoneresale-backend.onrender.com/api/products/${productId}`;
+        // ★ THE URL IS NOW CORRECT ★
+        const renderBackendURL = `https://flipphone-backend.onrender.com/api/products/${productId}`;
 
         const response = await fetch(renderBackendURL);
         if (!response.ok) {
@@ -449,8 +451,8 @@ document.addEventListener('DOMContentLoaded', async function() { // <-- Made asy
     
     // === FETCH PRODUCTS ON PAGE LOAD ===
     try {
-        // This is the public URL of your backend server
-        const renderBackendURL = "https://flipphoneresale-backend.onrender.com/api/products";
+        // ★ THE URL IS NOW CORRECT ★
+        const renderBackendURL = "https://flipphone-backend.onrender.com/api/products";
         
         const response = await fetch(renderBackendURL);
         if (!response.ok) {
