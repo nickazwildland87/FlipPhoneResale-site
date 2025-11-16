@@ -243,7 +243,7 @@ a:hover {
     margin-bottom: 0.5rem;
 }
 
-/* Static Pages (Returns) */
+/* Static Pages (Returns, Privacy, etc.) */
 .static-content-box {
     background: var(--color-bg-white);
     padding: 2.5rem;
@@ -513,7 +513,7 @@ a:hover {
 }
 
 
-/* Trust Section */
+/* Trust Section (index.html) */
 .trust-section {
     display: flex;
     justify-content: center;
@@ -531,6 +531,14 @@ a:hover {
     min-width: 210px;
     flex: 1 1 220px;
     text-align: center;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.trust-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px var(--color-shadow-light);
+    color: var(--color-secondary);
 }
 
 /* Filter/Sort Section */
@@ -572,7 +580,6 @@ a:hover {
     margin: 2rem 0;
 }
 
-/* ★ NEW STYLE FOR PRODUCT LINK ★ */
 .product-card-link {
     text-decoration: none; /* Removes underline from link */
     color: inherit; /* Makes link inherit text color */
@@ -727,6 +734,78 @@ a:hover {
     font-size: 1.1rem;
     width: 100%;
 }
+
+/* === NEW CSS FOR LOGIN/REGISTER FORMS === */
+.form-container {
+    max-width: 500px;
+    margin: 2.5rem auto;
+    background: var(--color-bg-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px var(--color-shadow-medium);
+}
+.form-container h1 {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.5rem;
+}
+.auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+.auth-form input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    font-size: 1rem;
+}
+.auth-form input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 5px var(--color-shadow-light);
+}
+
+.auth-button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--gradient-primary);
+    color: var(--color-bg-white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+}
+.auth-button:hover {
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+}
+
+.auth-message {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.auth-message.success {
+    color: var(--color-accent);
+}
+.auth-message.error {
+    color: #ff6b6b;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 2rem;
+}
+/* === END NEW CSS === */
+
 
 /* Newsletter */
 .newsletter {
@@ -1056,4 +1135,5 @@ a:hover {
     .receipt-actions { flex-direction: column; }
     .product-detail-container { padding: 1.5rem; } /* Mobile padding */
     .product-detail-info h1 { font-size: 1.8rem; } /* Mobile heading */
+    .form-container { padding: 1.5rem; } /* Mobile padding for auth */
 }
