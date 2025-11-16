@@ -27,7 +27,6 @@ function addToCart(productId) {
 // A helper function in case 'products' isn't loaded yet
 async function fetchAndAddToCart(productId) {
     try {
-        // ★ THE URL IS NOW CORRECT ★
         const renderBackendURL = `https://flipphone-backend.onrender.com/api/products/${productId}`;
         const response = await fetch(renderBackendURL);
         if (!response.ok) throw new Error("Product not found");
@@ -162,6 +161,68 @@ function clearReceipt() {
     window.location.href = 'index.html';
 }
 
+// ==================== ★ NEW USER AUTHENTICATION LOGIC ★ ====================
+
+async function handleRegister(event) {
+    event.preventDefault(); // Stop the form from submitting
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+    const messageDiv = document.getElementById('auth-message');
+    
+    // 1. Client-side validation
+    if (!email || !password || !passwordConfirm) {
+        messageDiv.textContent = 'Please fill out all fields.';
+        messageDiv.className = 'auth-message error';
+        return;
+    }
+    if (password !== passwordConfirm) {
+        messageDiv.textContent = 'Passwords do not match.';
+        messageDiv.className = 'auth-message error';
+        return;
+    }
+
+    // 2. Send data to the backend
+    try {
+        const renderBackendURL = "https://flipphone-backend.onrender.com/api/users/register";
+        
+        const response = await fetch(renderBackendURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Success!
+            messageDiv.textContent = 'Registration successful! Redirecting to login...';
+            messageDiv.className = 'auth-message success';
+            
+            // Redirect to the login page after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+            
+        } else {
+            // Show error message from server (e.g., "User already exists")
+            messageDiv.textContent = data.message;
+            messageDiv.className = 'auth-message error';
+        }
+        
+    } catch (error) {
+        console.error('Registration failed:', error);
+        messageDiv.textContent = 'An error occurred. Please try again later.';
+        messageDiv.className = 'auth-message error';
+    }
+}
+
 
 // ==================== PRODUCT DISPLAY (SHOP PAGE) ====================
 function displayProducts() {
@@ -184,7 +245,7 @@ function displayProducts() {
                 <div class="product-info">
                     <h3>${product.name}</h3>
                     <p class="condition">Condition: ${product.condition}</p>
-                    <p classD="price">$${product.price.toFixed(2)}</p>
+                    <p class="price">$${product.price.toFixed(2)}</p>
                     <p class="rating">${product.rating}</p>
                     ${product.specs ? `<p style="font-size: 0.85rem; color: #667eea; margin-bottom: 0.5rem;"><strong>Specs:</strong> ${product.specs}</p>` : ''}
                     
@@ -406,7 +467,6 @@ async function loadProductDetails() {
             throw new Error("No product ID found in URL.");
         }
 
-        // ★ THE URL IS NOW CORRECT ★
         const renderBackendURL = `https://flipphone-backend.onrender.com/api/products/${productId}`;
 
         const response = await fetch(renderBackendURL);
@@ -451,7 +511,6 @@ document.addEventListener('DOMContentLoaded', async function() { // <-- Made asy
     
     // === FETCH PRODUCTS ON PAGE LOAD ===
     try {
-        // ★ THE URL IS NOW CORRECT ★
         const renderBackendURL = "https://flipphone-backend.onrender.com/api/products";
         
         const response = await fetch(renderBackendURL);
