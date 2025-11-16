@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure Payments - Flip Phone Resale">
+    <title>Secure Payments - Flip Phone Resale</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="images/logo.jpg" alt="Flip Phone Resale Logo" class="logo-image">
+                <span class="logo-text">Flip Phone Resale</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="sell.html">Sell</a></li>
+                <li><a href="#cart" class="cart-link">🛒 Cart <span id="cart-count">0</span></a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Secure Payments</h1>
+        <p>How We Protect Your Transaction</p>
+    </section>
+
+    <main class="container">
+        <div class="static-content-box">
+            
+            <div class="static-section">
+                <h2>Our Commitment to Your Security</h2>
+                <p>
+                    Your security and privacy are our top priorities. We have implemented robust measures to ensure your personal and payment information is safe and secure from the moment you enter our site to the completion of your order.
+                </p>
+            </div>
+            
+            <div class="static-section">
+                <h2>SSL Encrypted Connection</h2>
+                <p>
+                    Our entire website runs on a secure connection using **SSL (Secure Sockets Layer) encryption**. This is the same industry-standard security technology used by banks and major online retailers.
+                </p>
+                <p>
+                    You can verify this at any time by looking for the **padlock icon (🔒)** in your browser's address bar. This icon confirms that all data being passed between your browser and our server is encrypted and private.
+                </p>
+                
+            </div>
+
+            <div class="static-section">
+                <h2>Our Payment Partner: Stripe</h2>
+                <p>
+                    We do not process or store your sensitive credit card information on our own servers. Instead, we have partnered with **Stripe**, a global leader in secure online payments.
+                </p>
+                
+                <p>
+                    When you enter your payment details at checkout, you are not sending them to us—you are sending them directly to Stripe's secure, PCI-compliant vault.
+                </p>
+                <ul>
+                    <li><strong>We Never See Your Card Number:</strong> Flip Phone Resale never sees, saves, or has access to your full credit card number. We only receive a secure "token" from Stripe that confirms your payment was successful.</li>
+                    <li><strong>World-Class Security:</strong> Stripe is certified as a PCI Level 1 Service Provider, the most stringent level of certification available in the payments industry.</li>
+                </ul>
+                <p>
+                    By using Stripe, we ensure your payment data is protected by the best security in the world, giving you complete peace of mind with every purchase.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Flip Phone Resale</h4>
+                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="sell.html">Sell</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="quality.html">Quality Certified</a></li>
+                        <li><a href="index.html#contact">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Flip Phone Resale. All rights reserved. | Gilbert, Arizona</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
