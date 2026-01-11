@@ -3,17 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Product Details - Flip Phone Resale">
-    <title>Product - Flip Phone Resale</title>
+    <meta name="description" content="Premium Refurbished Electronics - Flip Phone Resale Gilbert, AZ">
+    <title>Product Details | Flip Phone Resale</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <style>
+        /* Modern Split Layout */
+        .product-detail-container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-bottom: 4rem;
+        }
+
+        /* Image Styling */
+        .detail-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0;
+            background: #fff;
+        }
+
+        /* Text Styling */
+        .detail-info h1 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .detail-info .price-block {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2b6cb0; /* Professional Blue */
+            margin: 1rem 0 2rem 0;
+        }
+
+        .specs-box {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2b6cb0;
+            margin-bottom: 2rem;
+        }
+
+        /* Trust List styling */
+        .trust-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .trust-list li {
+            font-size: 0.9rem;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            max-width: 1100px;
+            margin: 1rem auto 0;
+            padding: 1rem 1.5rem;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        .breadcrumbs a {
+            color: #718096;
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            color: #2b6cb0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .detail-info h1 { font-size: 1.8rem; }
+        }
+
+        /* Large Add to Cart Button */
+        .add-to-cart-lg {
+            width: 100%;
+            background: #2b6cb0;
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .add-to-cart-lg:hover {
+            background: #2c5282;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo-section">
-                <img src="images/logo.jpg" alt="Flip Phone Resale Logo" class="logo-image">
+                <img src="images/logo.jpg" alt="Logo" class="logo-image" onerror="this.style.display='none'">
                 <span class="logo-text">Flip Phone Resale</span>
             </div>
             <ul class="nav-menu">
@@ -21,58 +136,82 @@
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="sell.html">Sell</a></li>
-                <li><a href="#cart" class="cart-link">🛒 Cart <span id="cart-count">0</span></a></li>
+                <li><a href="#cart" class="cart-link"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count">0</span></a></li>
             </ul>
             <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
 
-    <main class="container">
+    <div class="breadcrumbs">
+        <a href="index.html">Home</a> &nbsp;/&nbsp; <a href="shop.html">Shop</a> &nbsp;/&nbsp; <span>Product Details</span>
+    </div>
+
+    <main>
         <div id="product-detail-container" class="product-detail-container">
-            <p style="text-align: center; padding: 4rem 0;">Loading product details...</p>
+            <div style="text-align: center; padding: 4rem 0; color: #718096;">
+                <i class="fas fa-spinner fa-spin fa-3x"></i>
+                <p style="margin-top: 1rem;">Loading product details...</p>
+            </div>
         </div>
+
+        <section style="background-color: #f7fafc; padding: 3rem 0; border-top: 1px solid #e2e8f0;">
+            <div class="container" style="text-align: center;">
+                <h3 style="margin-bottom: 2rem; color: #2d3748;">The Flip Phone Promise</h3>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem;">
+                    <div style="flex: 1; min-width: 200px; max-width: 300px;">
+                        <i class="fas fa-check-circle" style="font-size: 2rem; color: #48bb78; margin-bottom: 1rem;"></i>
+                        <h4 style="margin-bottom: 0.5rem;">Certified Quality</h4>
+                        <p style="font-size: 0.9rem; color: #718096;">Every device passes a 30-point inspection.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; max-width: 300px;">
+                        <i class="fas fa-undo" style="font-size: 2rem; color: #4299e1; margin-bottom: 1rem;"></i>
+                        <h4 style="margin-bottom: 0.5rem;">30-Day Returns</h4>
+                        <p style="font-size: 0.9rem; color: #718096;">Don't love it? Return it. No questions asked.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; max-width: 300px;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: #ed8936; margin-bottom: 1rem;"></i>
+                        <h4 style="margin-bottom: 0.5rem;">Local Gilbert Support</h4>
+                        <p style="font-size: 0.9rem; color: #718096;">Real people, right here in Arizona.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>About Flip Phone Resale</h4>
-                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona. We believe in quality, affordability, and sustainability.</p>
+                    <h4>Flip Phone Resale</h4>
+                    <p>Your trusted source for premium refurbished electronics in Gilbert, Arizona.</p>
                     <div class="social-links">
-                        <a href="#" title="Facebook">f</a>
-                        <a href="#" title="Instagram">📷</a>
-                        <a href="#" title="Twitter">𝕏</a>
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="shop.html">Shop Inventory</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="sell.html">Sell</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="sell.html">Sell Device</a></li>
+                        <li><a href="privacy.html">Privacy</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Customer Service</h4>
+                    <h4>Support</h4>
                     <ul>
-                        <li><a href="#">Track Order</a></li>
                         <li><a href="returns.html">Returns</a></li>
-                        <li><a href="shipping.html">Shipping Info</a></li>
-                        <li><a href="quality.html">Quality Certified</a></li>
-                        <li><a href="payment.html">Secure Payments</a></li>
-                        <li><a href="index.html#contact">FAQ</a></li>
+                        <li><a href="shipping.html">Shipping</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Flip Phone Resale. All rights reserved. | Gilbert, Arizona</p>
+                <p>&copy; 2025 Flip Phone Resale. | Gilbert, Arizona</p>
             </div>
         </div>
     </footer>
